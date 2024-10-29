@@ -1,0 +1,22 @@
+.Card {
+  text-align: center;
+  box-shadow: -1px 2px 8px 0px #8cafe2;
+}
+.Card .CardHeader {
+  display: inline-block;
+  text-align: center;
+  font-size: 28px;
+  color: rgb(117, 97, 200);
+}
+
+.Card Button {
+  margin: 5px;
+}
+
+.Card .ButtonList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

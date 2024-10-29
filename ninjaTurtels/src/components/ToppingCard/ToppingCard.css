@@ -1,0 +1,12 @@
+.ToppingCard.RedBorder {
+  border: 1px solid red;
+  background-color: red;
+}
+
+.ToppingCard img {
+  width: 150px;
+  height: 150px;
+}
+
+.ToppingCard {
+}

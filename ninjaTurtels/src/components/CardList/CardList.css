@@ -1,0 +1,7 @@
+.CardList {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+  margin: 100px;
+}
