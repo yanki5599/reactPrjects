@@ -1,10 +1,11 @@
 import "./App.css";
-import VideoApp from "./components/VideoApp/VideoApp";
+import TimerApp from "./components/TimerApp/TimerApp";
+import TodoApp from "./components/TodoApp/TodoApp";
 
 function App() {
   return (
     <>
-      <VideoApp />
+      <TodoApp />
     </>
   );
 }
