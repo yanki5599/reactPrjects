@@ -1,0 +1,42 @@
+.ImageCard {
+  /* Add your styles here */
+  padding: 20px;
+
+  /* border: 2px solid gray; */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 600px;
+  background-color: rgb(235, 235, 235);
+}
+
+.ImageCard img {
+  height: 200px;
+  object-fit: contain;
+}
+
+.ImageCard .LikeBtn {
+  background-color: white;
+  display: flex;
+  gap: 10px;
+}
+.ImageCard .LikeBtn:active > span:nth-child(2) {
+}
+.ImageCard .LikeBtn:hover > span:nth-child(1) {
+  display: inline-block;
+  animation: beat 0.4s infinite alternate;
+  transform-origin: center;
+}
+
+.ImageCard .ImageDetailsDiv {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes beat {
+  to {
+    transform: scale(1.8);
+  }
+}

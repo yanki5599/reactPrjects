@@ -1,0 +1,6 @@
+.ErrorMsgModal {
+  padding: 20px 30px;
+  h1 {
+    color: red;
+  }
+}

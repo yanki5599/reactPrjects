@@ -1,0 +1,11 @@
+.ImageGrid {
+  /* Add your styles here */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
