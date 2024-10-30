@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import "./AddImage.css";
 import { Image } from "../../types/types";
 import { generateId } from "../../utils";
@@ -8,6 +8,9 @@ interface AddImageProps {
 }
 
 const AddImage: React.FC<AddImageProps> = ({ addImageFunc }) => {
+  const [smallUrl, setSmallUrl] = useState<string>("");
+  const [regularUrl, setRegularUrl] = useState<string>("");
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const form: HTMLFormElement = e.target as HTMLFormElement;
@@ -28,20 +31,29 @@ const AddImage: React.FC<AddImageProps> = ({ addImageFunc }) => {
   }
   return (
     <form className="AddImage" onSubmit={handleSubmit}>
-      <h1>AddImage</h1>
+      <h1>Add Image</h1>
       <input
         required
         type="text"
         name="alt_description"
         placeholder="alt description"
       />
-      <input required type="text" name="small" placeholder="url for small" />
+      <input
+        required
+        type="text"
+        name="small"
+        placeholder="url for small"
+        onChange={(e) => setSmallUrl(e.target.value)}
+      />
+      {smallUrl && <img src={smallUrl}></img>}
       <input
         required
         type="text"
         name="regular"
         placeholder="url for regular"
+        onChange={(e) => setRegularUrl(e.target.value)}
       />
+      {regularUrl && <img src={regularUrl}></img>}
       <input required type="text" name="username" placeholder="username" />
       <button type="submit">AddImage</button>
     </form>
