@@ -28,6 +28,7 @@ const AddImage: React.FC<AddImageProps> = ({ addImageFunc }) => {
     };
 
     addImageFunc(newImage);
+    form.reset();
   }
   return (
     <form className="AddImage" onSubmit={handleSubmit}>
