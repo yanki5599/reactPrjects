@@ -1,3 +1,17 @@
 .ImageDetails {
-    /* Add your styles here */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  max-height: 80vh;
+  height: 80vh;
+  background-color: rgb(213, 208, 208);
+  display: flex;
+  flex-direction: column;
+}
+
+.ImageDetails img {
+  max-height: 80%;
+  flex: 1;
 }

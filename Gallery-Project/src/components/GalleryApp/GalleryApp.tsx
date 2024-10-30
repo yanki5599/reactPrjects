@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./GalleryApp.css";
 import ImageGrid from "../ImageGrid/ImageGrid";
 import { fetchImages } from "../../unsplash";
 import { Image } from "../../types/types";
 import ErrorMsgModal from "../ErrorMsgModal/ErrorMsgModal";
+import Loader from "../Loader/Loader";
+import Paginator from "../Paginator/Paginator";
+import ImageDetails from "../ImageDetails/ImageDetails";
+import AddImage from "../AddImage/AddImage";
 
 interface GalleryAppProps {}
 
@@ -14,15 +18,20 @@ const GalleryApp: React.FC<GalleryAppProps> = ({}) => {
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // const selectedImageShowing = useRef<boolean>(false);
+
   useEffect(() => {
     if (isLoading) return;
     setIsLoading(true);
+
     fetchImages(currPage)
-      .then((images) => {
-        setImages((prev) => [...prev, ...images]);
-        setIsLoading(false);
+      .then((images) => setImages((prev) => [...prev, ...images]))
+      .catch((err) => {
+        setErrorMsg(err.message || "failed to load images");
       })
-      .catch((err) => setErrorMsg(err.message || "failed to load images"));
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [currPage]);
 
   useEffect(() => {
@@ -47,11 +56,11 @@ const GalleryApp: React.FC<GalleryAppProps> = ({}) => {
     setImages(tempImages);
   };
 
-  function nextPage() {
+  function nextPage(): void {
     setCurrPage((prev) => prev + 1);
   }
 
-  function prevPage() {
+  function prevPage(): void {
     setCurrPage((prev) => (prev > 1 ? prev - 1 : 1));
   }
 
@@ -59,22 +68,56 @@ const GalleryApp: React.FC<GalleryAppProps> = ({}) => {
     setSelectedImage(images.find((i) => i.id === imageId) || null);
   }
 
+  function closeImageDetails() {
+    setSelectedImage(null);
+  }
+
+  function shiftSelectedImage(step: number) {
+    const idx = images.findIndex((img) => img.id === selectedImage?.id);
+
+    if (idx == null || idx + step >= images.length || idx + step < 0) {
+      return;
+    }
+
+    setSelectedImage(images[idx + step]);
+  }
+
+  function addImage(img: Image): void {
+    setImages((prev) => [...prev, img]);
+  }
   return (
     <div className="GalleryApp">
       <header className="GalleryHeader">
         <h1>GalleryApp Component</h1>
       </header>
-      <main className="GalleryMain">
-        {errorMsg && <ErrorMsgModal errorMsg={errorMsg} />}
-        <ImageGrid
-          images={images}
+      {
+        <main className="GalleryMain">
+          <AddImage addImageFunc={addImage} />
+          {errorMsg && <ErrorMsgModal errorMsg={errorMsg} />}
+          {!errorMsg && (
+            <ImageGrid
+              images={images}
+              handleLike={handleLike}
+              handleImageClick={handleImageClick}
+            />
+          )}
+          {isLoading && <Loader />}
+          <Paginator
+            currPage={currPage}
+            nextPageFunc={nextPage}
+            prevPageFunc={prevPage}
+          />
+        </main>
+      }
+      {selectedImage && (
+        <ImageDetails
           handleLike={handleLike}
-          handleImageClick={handleImageClick}
+          image={selectedImage}
+          handleClose={closeImageDetails}
+          nextImage={() => shiftSelectedImage(1)}
+          prevImage={() => shiftSelectedImage(-1)}
         />
-        <button onClick={prevPage}>⏪</button>
-        <label>{currPage}</label>
-        <button onClick={nextPage}>⏩</button>
-      </main>
+      )}
     </div>
   );
 };

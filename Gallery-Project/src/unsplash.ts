@@ -13,7 +13,7 @@ export const fetchImages = async (
       params: { client_id: API_KEY, per_page: perPage, page: page },
     });
     return response.data;
-  } catch (error) {
-    throw new Error("Error! cannot fetch images");
+  } catch (error: any) {
+    throw new Error("Error! cannot fetch images" + error.message);
   }
 };

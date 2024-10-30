@@ -16,10 +16,10 @@ const ImageGrid: React.FC<ImageGridProps> = ({
 }) => {
   return (
     <div className="ImageGrid">
-      {images.map((image) => (
+      {images.map((image, idx) => (
         <ImageCard
           image={image}
-          key={image.id}
+          key={image.id + idx.toString()}
           handleLike={handleLike}
           handleImageClick={handleImageClick}
         />
