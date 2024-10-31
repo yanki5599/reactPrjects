@@ -3,7 +3,7 @@ import MilitaryApp from "./components/MilitaryApp/MilitaryApp";
 
 function App() {
   return (
-    <div>
+    <div className="MilitaryApp">
       <MilitaryApp />
     </div>
   );

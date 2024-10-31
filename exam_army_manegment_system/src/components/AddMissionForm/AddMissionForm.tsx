@@ -5,15 +5,17 @@ interface AddMissionFormProps {
   handleSubmitFunc: (mission: Mission) => void;
 }
 
+const defaultDataObj: Mission = {
+  name: "",
+  status: MissionStatus.Pending,
+  priority: Priority.Low,
+  description: "",
+};
+
 const AddMissionForm: React.FC<AddMissionFormProps> = ({
   handleSubmitFunc,
 }) => {
-  const [formData, setFormData] = useState<Mission>({
-    name: "",
-    status: MissionStatus.Pending,
-    priority: Priority.Low,
-    description: "",
-  });
+  const [formData, setFormData] = useState<Mission>(defaultDataObj);
 
   function handleChange(e: any) {
     const { name, value } = e.target;
@@ -24,6 +26,7 @@ const AddMissionForm: React.FC<AddMissionFormProps> = ({
     e.preventDefault();
     if (!formData.name.trim() || !formData.description.trim()) return;
     handleSubmitFunc(formData);
+    setFormData(defaultDataObj);
   }
 
   return (
@@ -34,6 +37,7 @@ const AddMissionForm: React.FC<AddMissionFormProps> = ({
         required
         placeholder="Enter name:"
         onChange={handleChange}
+        value={formData.name}
       />
       <select name="missionStatus" required onChange={handleChange}>
         {Object.keys(MissionStatus).map((key, idx) => (
@@ -54,6 +58,7 @@ const AddMissionForm: React.FC<AddMissionFormProps> = ({
         required
         placeholder="description:"
         onChange={handleChange}
+        value={formData.description}
       />
       <button type="submit">Add Mission</button>
     </form>

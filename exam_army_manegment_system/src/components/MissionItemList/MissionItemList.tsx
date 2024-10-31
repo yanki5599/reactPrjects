@@ -16,6 +16,9 @@ const MissionItemList: React.FC<MissionItemListProps> = ({
 }) => {
   return (
     <div className="MissionItemList">
+      <div className="title">
+        <h1>Missions</h1>
+      </div>
       {missions.map((m, idx) => (
         <MissionItem
           key={"missionItem" + idx}

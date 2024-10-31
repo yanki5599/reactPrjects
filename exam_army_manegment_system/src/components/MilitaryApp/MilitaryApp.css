@@ -1,2 +1,16 @@
 .MilitaryApp {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  background-color: #f0f0f0;
+
+  gap: 50px;
+  text-align: center;
+}
+.MilitaryApp .Title {
+  margin-top: 50px;
+  color: #4b8c57;
 }

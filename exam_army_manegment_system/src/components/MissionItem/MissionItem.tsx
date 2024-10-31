@@ -1,6 +1,6 @@
 import React from "react";
 import "./MissionItem.css";
-import { Mission } from "../../types/mission";
+import { Mission, MissionStatus } from "../../types/mission";
 
 interface MissionItemProps {
   mission: Mission;
@@ -8,13 +8,24 @@ interface MissionItemProps {
   progressMission: (missionId: string) => void;
 }
 
+const colorMap = (status: MissionStatus) => {
+  switch (status) {
+    case MissionStatus.InProgress:
+      return "InProgress";
+    case MissionStatus.Pending:
+      return "Pending";
+    case MissionStatus.Completed:
+      return "Completed";
+  }
+};
+
 const MissionItem: React.FC<MissionItemProps> = ({
   mission,
   deleteMission,
   progressMission,
 }) => {
   return (
-    <div className="MissionItem">
+    <div className={"MissionItem" + " " + colorMap(mission.status)}>
       <div className="info">
         <h3>Name: {mission.name}</h3>
         <h4>Status: {mission.status}</h4>
@@ -22,8 +33,12 @@ const MissionItem: React.FC<MissionItemProps> = ({
         <h4>Description: {mission.description}</h4>
       </div>
       <div className="ActionButtons">
-        <button onClick={() => deleteMission(mission._id!)}>Delete</button>
-        <button onClick={() => progressMission(mission._id!)}>Progress</button>
+        <button className="red" onClick={() => deleteMission(mission._id!)}>
+          Delete
+        </button>
+        <button className="green" onClick={() => progressMission(mission._id!)}>
+          Progress
+        </button>
       </div>
     </div>
   );

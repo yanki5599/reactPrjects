@@ -8,7 +8,7 @@ export interface Mission {
 
 export enum MissionStatus {
   Pending = "Pending",
-  Progress = "In Progress",
+  InProgress = "In Progress",
   Completed = "Completed",
 }
 

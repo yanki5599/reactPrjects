@@ -1,3 +1,32 @@
 .AddMissionForm {
-    /* Add your styles here */
+  background-color: #4b8c57;
+  width: 60%;
+  margin: auto;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  gap: 10px;
+  input,
+  select,
+  textarea {
+    font-size: 22px;
+    padding: 4px 0;
+    border-radius: 8px;
+  }
+  button {
+    padding: 12px;
+    width: 15%;
+    background-color: #d9534f;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: hsl(2, 64%, 50%);
+  }
+  button:active {
+    background-color: hsl(2, 64%, 58%);
+  }
 }
