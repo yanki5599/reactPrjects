@@ -10,7 +10,11 @@ const ErrorMsg: React.FC<ErrorMsgProps> = ({ msg, destroyFunc }) => {
   setTimeout(() => {
     destroyFunc();
   }, 3000);
-  return <h1 className="ErrorMsg">{msg}</h1>;
+  return (
+    <h1 className="ErrorMsg">
+      <span>{msg}</span>
+    </h1>
+  );
 };
 
 export default ErrorMsg;

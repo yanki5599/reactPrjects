@@ -11,7 +11,7 @@ interface MilitaryAppProps {}
 const MilitaryApp: React.FC<MilitaryAppProps> = ({}) => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
-  const [errMsg, seterrMsg] = useState<string>("asf");
+  const [errMsg, seterrMsg] = useState<string>("");
 
   function addMission(mission: Mission): void {
     if (!mission) return;
