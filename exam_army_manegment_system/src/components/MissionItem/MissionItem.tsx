@@ -1,15 +1,12 @@
 import React from "react";
 import "./MissionItem.css";
+import { Mission } from "../../types/mission";
 
-enum MissionStatus {
-  Pending = "Pending",
-  Progress = "Progress",
-  Completed = "Completed",
+interface MissionItemProps {
+  mission: Mission;
 }
 
-interface MissionItemProps {}
-
-const MissionItem: React.FC<MissionItemProps> = ({}) => {
+const MissionItem: React.FC<MissionItemProps> = ({ mission }) => {
   return (
     <div className="MissionItem">
       <h1>MissionItem Component</h1>
