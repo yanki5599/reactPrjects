@@ -44,6 +44,7 @@ const MilitaryApp: React.FC<MilitaryAppProps> = ({}) => {
   }
   function showError(msg: string): void {
     console.error(msg);
+    seterrMsg(msg);
   }
 
   useEffect(() => {

@@ -36,9 +36,20 @@ const MissionItem: React.FC<MissionItemProps> = ({
         <button className="red" onClick={() => deleteMission(mission._id!)}>
           Delete
         </button>
-        <button className="green" onClick={() => progressMission(mission._id!)}>
-          Progress
-        </button>
+        {
+          <button
+            style={{
+              visibility:
+                mission.status !== MissionStatus.Completed
+                  ? "visible"
+                  : "hidden",
+            }}
+            className="green"
+            onClick={() => progressMission(mission._id!)}
+          >
+            Progress
+          </button>
+        }
       </div>
     </div>
   );
