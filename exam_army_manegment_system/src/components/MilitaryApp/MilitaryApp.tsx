@@ -4,12 +4,14 @@ import AddMissionForm from "../AddMissionForm/AddMissionForm";
 import MissionItemList from "../MissionItemList/MissionItemList";
 import { Mission } from "../../types/mission";
 import * as apiService from "../../api/apiMissions";
+import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
 interface MilitaryAppProps {}
 
 const MilitaryApp: React.FC<MilitaryAppProps> = ({}) => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [errMsg, seterrMsg] = useState<string>("asf");
 
   function addMission(mission: Mission): void {
     if (!mission) return;
@@ -60,6 +62,14 @@ const MilitaryApp: React.FC<MilitaryAppProps> = ({}) => {
         deleteMission={deleteMission}
         progressMission={progressMission}
       />
+      {errMsg && (
+        <ErrorMsg
+          msg={errMsg}
+          destroyFunc={() => {
+            seterrMsg("");
+          }}
+        />
+      )}
     </div>
   );
 };
