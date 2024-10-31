@@ -7,11 +7,7 @@ interface MissionItemProps {
 }
 
 const MissionItem: React.FC<MissionItemProps> = ({ mission }) => {
-  return (
-    <div className="MissionItem">
-      <h1>MissionItem Component</h1>
-    </div>
-  );
+  return <div className="MissionItem"></div>;
 };
 
 export default MissionItem;
