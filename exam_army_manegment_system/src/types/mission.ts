@@ -1,17 +1,18 @@
 export interface Mission {
-  id: string;
+  _id: string;
   name: string;
   status: MissionStatus;
   priority: Priority;
+  description: string;
 }
 
 enum MissionStatus {
   Pending = "Pending",
-  Progress = "Progress",
+  Progress = "In Progress",
   Completed = "Completed",
 }
 
 enum Priority {
-  High = "HIGH",
-  Low = "LOW",
+  High = "High",
+  Low = "Low",
 }
