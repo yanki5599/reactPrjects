@@ -11,9 +11,9 @@ interface ContextProps {
 
 const TodosContext = createContext<ContextProps>({
   todos: [],
-  addTodo: (todo: Todo) => {},
-  deleteTodo: (todoId: string) => {},
-  toggleComplete: (todoId: string) => {},
+  addTodo: () => {},
+  deleteTodo: () => {},
+  toggleComplete: () => {},
 });
 
 interface TodosProviderProps {
@@ -24,9 +24,11 @@ const LOCAL_STORAGE_KEY: string = "todos";
 
 const TodosProvider: React.FC<TodosProviderProps> = ({ children }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const addTodo = (todo: Todo) => {
+
+  const addTodo = (todo: Todo): void => {
     setTodos((prev) => [...prev, { ...todo, id: generateUniqueId() }]);
   };
+
   const deleteTodo = (todoId: string) => {
     const filtered = todos.filter((todo) => todo.id !== todoId);
     setTodos(filtered);

@@ -1,15 +1,15 @@
 import React from "react";
 import TodoItem from "../TodoItem/TodoItem";
 import { useGlobalTodos } from "../context/TodoContext/TodoContext";
-
+import "./TodoList.css";
 interface TodoListProps {}
 
 const TodoList: React.FC<TodoListProps> = () => {
-  const { todos: todoList } = useGlobalTodos();
+  const { todos } = useGlobalTodos();
 
   return (
     <ul className="TodoList">
-      {todoList.map((td) => (
+      {todos.map((td) => (
         <TodoItem key={td.id} todo={td} />
       ))}
     </ul>

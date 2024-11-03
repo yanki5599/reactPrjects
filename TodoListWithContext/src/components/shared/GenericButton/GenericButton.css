@@ -1,0 +1,25 @@
+.GenericButton {
+  font-size: 20px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.GenericButton:hover {
+  box-shadow: 0 0 8px hsla(0, 0%, 0%, 0.532);
+}
+
+.GenericButton.Primary-btn {
+  background-color: rgb(84, 186, 229);
+}
+.GenericButton.Success-btn {
+  background-color: rgb(108, 246, 108);
+}
+.GenericButton.Warning-btn {
+  background-color: rgb(255, 232, 114);
+}
+.GenericButton.Danger-btn {
+  background-color: rgb(255 147 147);
+}

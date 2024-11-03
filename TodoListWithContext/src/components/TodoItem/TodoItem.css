@@ -1,6 +1,40 @@
+.TodoItem {
+  font-size: 20px;
+  list-style: none;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: antiquewhite;
+  padding: 20px 30px;
+  transition: 0.1s linear all;
+  cursor: pointer;
+}
+.TodoItem.Complete {
+  background-color: hsla(120, 70%, 60%, 0.704);
+}
+.TodoItem.Complete .todoText {
+  text-decoration: line-through;
+}
+.TodoItem:hover {
+  transform: scale(1.03);
+}
+.TodoItem:active {
+  transform: scale(0.95);
+}
+
 .TodoItem .DoneMark {
   cursor: pointer;
 }
 .DoneMark:hover {
-  box-shadow: 0 0 10px 0 black;
+  /* box-shadow: 0 0 10px 0 black; */
+}
+
+.TodoItem button {
+  font-size: 20px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

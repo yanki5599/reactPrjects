@@ -1,9 +1,12 @@
+import { TodosProvider } from "./components/context/TodoContext/TodoContext";
 import TodoApp from "./components/TodoApp/TodoApp";
 
 function App() {
   return (
     <>
-      <TodoApp />
+      <TodosProvider>
+        <TodoApp />
+      </TodosProvider>
     </>
   );
 }

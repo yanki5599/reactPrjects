@@ -11,7 +11,11 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  background-color: hsl(100, 100%, 95%);
+  padding: 20px 40px;
+  width: 40%;
+  gap: 20px;
+
   input {
     font-size: 22px;
     padding: 4px 2px;
@@ -23,18 +27,31 @@
     border: none;
     box-shadow: 0 0 3px hsla(0, 0%, 0%, 0.532);
     border-radius: 4px;
+    font-size: 20px;
     padding: 5px 10px;
     transition: 0.1s linear all;
+    cursor: pointer;
+    background-color: rgb(189, 255, 233);
   }
   button:hover {
     border-radius: 4px;
     padding: 5px 10px;
-    box-shadow: 0 0 6px hsla(0, 0%, 0%, 0.532);
+    box-shadow: 0 0 8px hsla(0, 0%, 0%, 0.532);
   }
   button:active {
     border-radius: 4px;
     padding: 5px 10px;
     transform: scale(0.9);
     box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2);
+  }
+}
+
+.beat {
+  animation: 0.5s linear infinite alternate beat;
+}
+
+@keyframes beat {
+  to {
+    transform: scale(1.05);
   }
 }
