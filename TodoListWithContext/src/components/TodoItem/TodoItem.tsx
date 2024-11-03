@@ -1,6 +1,6 @@
 import React from "react";
 import "./TodoItem.css";
-import { useGlobalTodos } from "../context/TodoContext/TodoContext";
+import { useGlobalTodos } from "../../context/TodoContext/TodoContext";
 import { Todo } from "../../types/TodoModel";
 import GenericButton, {
   ButtonStyle,

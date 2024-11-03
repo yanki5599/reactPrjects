@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Todo } from "../../../types/TodoModel";
-import { readFromLocalStorage } from "../../../utils";
+import { Todo } from "../../types/TodoModel";
+import { readFromLocalStorage } from "../../utils";
 
 interface ContextProps {
   todos: Todo[];

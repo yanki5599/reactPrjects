@@ -1,10 +1,9 @@
 import React from "react";
 import TodoItem from "../TodoItem/TodoItem";
-import { useGlobalTodos } from "../context/TodoContext/TodoContext";
+import { useGlobalTodos } from "../../context/TodoContext/TodoContext";
 import "./TodoList.css";
-interface TodoListProps {}
 
-const TodoList: React.FC<TodoListProps> = () => {
+const TodoList: React.FC = () => {
   const { todos } = useGlobalTodos();
 
   return (

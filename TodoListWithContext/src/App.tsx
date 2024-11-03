@@ -1,4 +1,4 @@
-import { TodosProvider } from "./components/context/TodoContext/TodoContext";
+import { TodosProvider } from "./context/TodoContext/TodoContext";
 import TodoApp from "./components/TodoApp/TodoApp";
 
 function App() {

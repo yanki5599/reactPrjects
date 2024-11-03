@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import TodoList from "../TodoList/TodoList";
 import "./TodoApp.css";
-import { useGlobalTodos } from "../context/TodoContext/TodoContext";
+import { useGlobalTodos } from "../../context/TodoContext/TodoContext";
 import GenericButton, {
   ButtonStyle,
 } from "../shared/GenericButton/GenericButton";
@@ -14,7 +14,6 @@ const TodoApp = () => {
   function handleSubmit(e: FormEvent): void {
     e.preventDefault();
     if (!inputValue.trim()) return;
-
     addTodo({ done: false, todo: inputValue });
     setInputValue("");
   }
