@@ -27,6 +27,7 @@ const TodoApp = () => {
           onChange={(e) => setInputValue(e.target.value)}
           type="text"
           value={inputValue}
+          required
         />
         <GenericButton
           text={"Add"}
