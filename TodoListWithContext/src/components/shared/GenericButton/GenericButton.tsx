@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import "./GenericButton.css";
 
 export enum ButtonStyle {
