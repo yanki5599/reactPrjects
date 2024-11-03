@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import TodoList from "../TodoList/TodoList";
 import "./TodoApp.css";
 import { useGlobalTodos } from "../../context/TodoContext/TodoContext";
