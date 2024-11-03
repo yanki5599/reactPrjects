@@ -1,3 +1,32 @@
 .Card {
-    /* Add your styles here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 10px 0 black;
+  transition: 0.5s ease-in-out;
+  width: 200px;
+  height: 200px;
+}
+.Card .Image {
+  object-fit: contain;
+  width: 50%;
+  height: 50%;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.Card:hover {
+  transition: 0.2s ease-in;
+  scale: 1.2;
+  box-shadow: 0 0 15px 0 black;
+  cursor: pointer;
+}
+
+.Card:active {
+  scale: 1;
+  transition: 0.05s;
 }

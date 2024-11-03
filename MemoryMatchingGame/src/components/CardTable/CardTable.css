@@ -1,3 +1,10 @@
 .CardTable {
-    /* Add your styles here */
+}
+
+.CardTable .container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px 20px;
+  justify-content: space-evenly;
+  align-items: center;
 }
