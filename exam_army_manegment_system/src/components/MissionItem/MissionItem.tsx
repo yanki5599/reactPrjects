@@ -8,24 +8,13 @@ interface MissionItemProps {
   progressMission: (missionId: string) => void;
 }
 
-const colorMap = (status: MissionStatus) => {
-  switch (status) {
-    case MissionStatus.InProgress:
-      return "InProgress";
-    case MissionStatus.Pending:
-      return "Pending";
-    case MissionStatus.Completed:
-      return "Completed";
-  }
-};
-
 const MissionItem: React.FC<MissionItemProps> = ({
   mission,
   deleteMission,
   progressMission,
 }) => {
   return (
-    <div className={"MissionItem" + " " + colorMap(mission.status)}>
+    <div className={"MissionItem" + " " + mission.status.replace(" ", "")}>
       <div className="info">
         <h3>Name: {mission.name}</h3>
         <h4>Status: {mission.status}</h4>

@@ -39,14 +39,27 @@ const AddMissionForm: React.FC<AddMissionFormProps> = ({
         onChange={handleChange}
         value={formData.name}
       />
-      <select name="missionStatus" required onChange={handleChange}>
+      <select
+        name="status"
+        required
+        onChange={handleChange}
+        value={formData.status}
+      >
         {Object.keys(MissionStatus).map((key, idx) => (
-          <option key={"statusOpt" + idx} value={key}>
+          <option
+            key={"statusOpt" + idx}
+            value={Object.values(MissionStatus)[idx]}
+          >
             {key}
           </option>
         ))}
       </select>
-      <select name="missionStatus" required onChange={handleChange}>
+      <select
+        name="priority"
+        required
+        onChange={handleChange}
+        value={formData.priority}
+      >
         {Object.keys(Priority).map((key, idx) => (
           <option key={"priorityOpt" + idx} value={key}>
             {key}
