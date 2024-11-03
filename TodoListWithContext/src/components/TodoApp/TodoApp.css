@@ -1,0 +1,40 @@
+.todo-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  padding-top: 70px;
+}
+.todo-app .AddTodoForm {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  input {
+    font-size: 22px;
+    padding: 4px 2px;
+    border: none;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
+  }
+  button {
+    border: none;
+    box-shadow: 0 0 3px hsla(0, 0%, 0%, 0.532);
+    border-radius: 4px;
+    padding: 5px 10px;
+    transition: 0.1s linear all;
+  }
+  button:hover {
+    border-radius: 4px;
+    padding: 5px 10px;
+    box-shadow: 0 0 6px hsla(0, 0%, 0%, 0.532);
+  }
+  button:active {
+    border-radius: 4px;
+    padding: 5px 10px;
+    transform: scale(0.9);
+    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2);
+  }
+}
