@@ -9,6 +9,9 @@ interface ProductItemProps {
   product: CartItem;
 }
 
+const MIN = 0;
+const MAX = 100;
+
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const [currQuantity, setCurQuantity] = useState(product.quantity);
   const { updateCart } = useGlobalShoppingCart();
@@ -19,21 +22,33 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       <span>${product.price}</span>
       <div className="actions">
         <button
-          onClick={() => setCurQuantity((prev) => (prev > 0 ? prev - 1 : 0))}
+          onClick={() =>
+            setCurQuantity((prev) => (prev > MIN ? prev - 1 : MIN))
+          }
         >
           -
         </button>
         <input
-          min={0}
-          max={100}
+          min={MIN}
+          max={MAX}
           type="number"
           value={currQuantity}
           onChange={(e) => {
             console.log(e.target.value);
-            setCurQuantity(+e.target.value >= 0 ? +e.target.value : 0);
+            setCurQuantity(
+              +e.target.value >= MIN && +e.target.value <= MAX
+                ? +e.target.value
+                : MIN
+            );
           }}
         />
-        <button onClick={() => setCurQuantity((prev) => prev + 1)}>+</button>
+        <button
+          onClick={() =>
+            setCurQuantity((prev) => (prev < MAX ? prev + 1 : MAX))
+          }
+        >
+          +
+        </button>
       </div>
       <button
         className="update"

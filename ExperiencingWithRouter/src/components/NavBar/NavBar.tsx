@@ -14,7 +14,9 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
         <button className="link">Products</button>
       </Link>
       <Link to={"/Cart"}>
-        <button className="link">Cart</button>
+        <button className="link">
+          Cart <i className="fa-solid fa-cart-shopping"></i>
+        </button>
       </Link>
     </div>
   );

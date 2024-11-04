@@ -1,10 +1,9 @@
-import CartProductList from "../components/CartProductList/CartProductList";
+import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
 
 const Cart = () => {
   return (
     <main className="Page">
-      <h1>Cart</h1>
-      <CartProductList />
+      <ShoppingCart />
     </main>
   );
 };
