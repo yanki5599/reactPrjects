@@ -1,0 +1,95 @@
+{
+  "Elite Units": [
+    {
+      "name": "Sayeret Matkal",
+      "description": "An elite special forces unit specializing in counter-terrorism, reconnaissance, and intelligence gathering.",
+      "image": "https://www.idf.il/media/0l3a50pf/6.jpg?anchor=center&mode=crop&width=278&height=185"
+    },
+    {
+      "name": "Shayetet 13",
+      "description": "The naval commando unit of the IDF, focusing on maritime operations, counter-terrorism, and sabotage.",
+      "image": "https://www.idf.il/media/vn2eoutk/tal_5860.jpg?crop=0.0502124150158684,0,0.17092295042614858,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "The Shaldag Unit",
+      "description": "A special forces unit under the Israeli Air Force, conducting deep reconnaissance and air force-related missions.",
+      "image": "https://www.idf.il/media/czib444x/50836.jpg?crop=0.22114676902378208,0,0,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Unit 669",
+      "description": "The IDF's elite combat search and rescue unit, responsible for extracting wounded soldiers and civilians from combat zones.",
+      "image": "https://www.idf.il/media/r5vgmohl/אודות-יחידה-669.jpg?crop=0.019394030195228788,0,0.20174133524678819,0&cropmode=percentage&width=278&height=185"
+    }
+  ],
+  "Special Forces": [
+    {
+      "name": "Alpinist Unit",
+      "description": "Specializes in mountain warfare and operations in snowy terrains.",
+      "image": "https://www.idf.il/media/3kulgkda/אלפיניסטים-min.jpg?crop=0.055815757710530149,0,0.16531960773148682,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Oketz Unit",
+      "description": "The IDF's canine unit, trained for attack, detection, and search and rescue missions.",
+      "image": "https://www.idf.il/media/agfdthn1/_dsc8783-min.jpg?anchor=center&mode=crop&width=278&height=185"
+    },
+    {
+      "name": "Yahalom Unit",
+      "description": "An elite combat engineering unit specializing in explosive ordnance disposal, tunnel warfare, and special engineering tasks.",
+      "image": "https://www.idf.il/media/nvhb0ktb/יהלם2-עותק.jpg?crop=0.27053136508493658,0.000000000000000076815430893,0.17847764392407253,0.000000000000000153630861786&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Sky Rider Unit",
+      "description": "Operates tactical unmanned aerial vehicles (UAVs) for reconnaissance and intelligence gathering.",
+      "image": ""
+    }
+  ],
+  "Commando Units": [
+    {
+      "name": "Duvdevan Unit",
+      "description": "An elite unit specializing in undercover operations, counter-terrorism, and targeted assassinations within urban areas.",
+      "image": "https://www.idf.il/media/mrkgardp/עותק-של-_yhv0563.jpg?crop=0.16788749299308189,0,0.053259276030700332,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Maglan Unit",
+      "description": "Conducts deep reconnaissance and special operations behind enemy lines, often using advanced weaponry and tactics.",
+      "image": "https://www.idf.il/media/2vkpnkla/עותק-של-dsc_0057.jpg?crop=0,0,0.221135365442017,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Egoz Unit",
+      "description": "Specializes in guerrilla warfare, anti-guerrilla warfare, and complex reconnaissance missions, primarily in northern Israel.",
+      "image": "https://www.idf.il/media/bsbcyx21/אגוז-תרחט-קומנדו.jpg?crop=0.20990768181372824,0,0.011227683628288751,0&cropmode=percentage&width=278&height=185"
+    }
+  ],
+  "Combat Brigades": [
+    {
+      "name": "Golani Brigade",
+      "description": "An infantry brigade known for its toughness and participation in major conflicts since its inception.",
+      "image": "https://www.idf.il/media/zeedcin2/סיום-תרח-ט.jpg?crop=0.13607646329053646,0,0.085070305733245727,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Nahal Brigade",
+      "description": "Combines military service with social and agricultural development, focusing on infantry combat.",
+      "image": "https://www.idf.il/media/uhce0gbk/תרגד-932-נחל-ברמת-הגולן-4.jpg?crop=0.15387934135681897,0,0.067267427666963239,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Givati Brigade",
+      "description": "An infantry brigade specializing in urban warfare and operations in the southern regions of Israel.",
+      "image": "https://www.idf.il/media/jg2jalvr/copy-of-_yhv2693.jpg?crop=0.0894418438300096,0,0.13170492519377264,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Paratroopers Brigade",
+      "description": "An elite airborne infantry brigade trained for parachute operations and rapid deployment.",
+      "image": "https://www.idf.il/media/anjoxaz0/באנר-שחזור-מתלה.jpg?crop=0.11185488644803025,0,0.10929188257575198,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Kfir Brigade",
+      "description": "Specializes in counter-terrorism and urban warfare, primarily operating in the West Bank.",
+      "image": "https://www.idf.il/media/rhbdz2le/באנר-כפיר-הכירו.jpg?crop=0.11185488644803025,0,0.10929188257575198,0&cropmode=percentage&width=278&height=185"
+    },
+    {
+      "name": "Search And Rescue Brigade",
+      "description": "Focuses on search and rescue operations during both military and civilian emergencies.",
+      "image": "https://www.idf.il/media/tvzhxpc1/עותק-של-1.jpg?crop=0.14547445037506124,0,0.075672318648721,0&cropmode=percentage&width=278&height=185"
+    }
+  ]
+}
