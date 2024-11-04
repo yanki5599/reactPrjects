@@ -10,14 +10,11 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
       <Link to={"/"}>
         <button className="link">Home</button>
       </Link>
-      <Link to={"/news"}>
-        <button className="link">News</button>
+      <Link to={"/Products"}>
+        <button className="link">Products</button>
       </Link>
-      <Link to={"/sport"}>
-        <button className="link">Sport</button>
-      </Link>
-      <Link to={"/users/4"}>
-        <button className="link">User 4</button>
+      <Link to={"/Cart"}>
+        <button className="link">Cart</button>
       </Link>
     </div>
   );

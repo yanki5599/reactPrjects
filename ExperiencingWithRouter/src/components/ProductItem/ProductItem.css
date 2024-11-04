@@ -1,0 +1,94 @@
+.ProductItem {
+  max-width: 12em;
+  min-width: 8em;
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 0 5px 5px #e1e1e1;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+.ProductItem img {
+  max-width: 100%;
+}
+.ProductItem h4 {
+  font-size: 1.3em;
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+.ProductItem .actions {
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 15px 15px 15px;
+  gap: 8px;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input {
+    min-width: 0.6em;
+    max-width: 2em;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+  }
+}
+.ProductItem .actions > button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProductItem .update {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  border: none;
+}
+
+.ProductItem .update:hover {
+  font-weight: bold;
+}
+
+.ProductItem:hover {
+  background-color: lightslategray;
+  color: #fff;
+}
+.ProductItem:hover button {
+  color: #000;
+  background-color: #fff;
+}
+
+.ProductItem button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px black;
+}
+
+.ProductItem button:active {
+  cursor: pointer;
+  box-shadow: 0 0 5px black;
+}
+
+@media screen and (max-width: 576px) {
+  .ProductItem {
+    font-size: 0.9em;
+  }
+}
+
+.ProductItem input {
+  max-width: max-content;
+}
