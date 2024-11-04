@@ -14,7 +14,7 @@ const TodoApp = () => {
   function handleSubmit(e: FormEvent): void {
     e.preventDefault();
     if (!inputValue.trim()) return;
-    addTodo({ done: false, todo: inputValue });
+    addTodo({ completed: false, todo: inputValue });
     setInputValue("");
   }
 

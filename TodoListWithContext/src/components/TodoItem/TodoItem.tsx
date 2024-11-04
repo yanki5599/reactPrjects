@@ -15,10 +15,10 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
 
   return (
     <li
-      className={`TodoItem ${todo.done ? "Complete" : ""}`}
+      className={`TodoItem ${todo.completed ? "Complete" : ""}`}
       onClick={() => toggleComplete(todo.id!)}
     >
-      <span className="DoneMark">{todo.done ? "✅" : "❌"}</span>
+      <span className="DoneMark">{todo.completed ? "✅" : "❌"}</span>
       <h3 className="todoText">{todo.todo}</h3>
       <GenericButton
         text="Delete"
