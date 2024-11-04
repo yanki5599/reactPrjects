@@ -1,27 +1,19 @@
 import { FC } from "react";
-import UnitList from "./components/UnitList/UnitList";
-import MissionCompleted from "./components/MissionCompleted/MissionCompleted";
-import { useGlobalUnits } from "./context/DeploymentContext/DeploymentContext";
-import { MissionStatus } from "./types/MissionStatus";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import UnitsPage from "./pages/UnitsPage";
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./pages/Home";
+
 const App: FC = () => {
-  const { setUnitStatus, units } = useGlobalUnits();
-
-  function setAllToIdle() {
-    for (const unit in units) {
-      if (Object.prototype.hasOwnProperty.call(units, unit)) {
-        setUnitStatus(unit, MissionStatus.Idle);
-      }
-    }
-  }
-
   return (
-    <div className="App">
-      <h1>מעקב פריסת יחידות צה"ל</h1>
-      <button onClick={setAllToIdle}>refresh</button>
-      <UnitList />
-      <MissionCompleted />
-    </div>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Units" element={<UnitsPage />} />
+      </Routes>
+    </>
   );
 };
 

@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  align-items: start;
+  align-items: center;
   gap: 15px;
 
   > button {
-    background-color: #04aa6d; /* Green */
+    background-color: #075b3c;
     border: none;
     color: white;
     padding: 15px 32px;
