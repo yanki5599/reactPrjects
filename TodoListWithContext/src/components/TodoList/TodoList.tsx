@@ -1,10 +1,10 @@
 import React from "react";
 import TodoItem from "../TodoItem/TodoItem";
-import { useGlobalTodos } from "../../context/TodoContext/TodoContext";
+import { GlobalTodos } from "../../context/TodoContext/TodoContext";
 import "./TodoList.css";
 
 const TodoList: React.FC = () => {
-  const { todos } = useGlobalTodos();
+  const { todos } = GlobalTodos();
 
   return (
     <ul className="TodoList">

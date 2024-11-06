@@ -95,7 +95,7 @@ const TodosProvider: React.FC<TodosProviderProps> = ({ children }) => {
   );
 };
 
-export const useGlobalTodos = () => {
+export const GlobalTodos = () => {
   return useContext(TodosContext);
 };
 

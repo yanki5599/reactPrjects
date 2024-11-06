@@ -1,6 +1,6 @@
 import React from "react";
 import "./TodoItem.css";
-import { useGlobalTodos } from "../../context/TodoContext/TodoContext";
+import { GlobalTodos } from "../../context/TodoContext/TodoContext";
 import { Todo } from "../../types/TodoModel";
 import GenericButton, {
   ButtonStyle,
@@ -11,7 +11,7 @@ interface TodoItemProps {
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
-  const { toggleComplete, deleteTodo } = useGlobalTodos();
+  const { toggleComplete, deleteTodo } = GlobalTodos();
 
   return (
     <li
