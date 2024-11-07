@@ -5,7 +5,7 @@ interface FloorreducerStateType {
   floorAccess: boolean[];
 }
 const initialState: FloorreducerStateType = {
-  floorAccess: new Array<boolean>(buildings.length).fill(true).fill(false, 1),
+  floorAccess: new Array<boolean>(buildings.length).fill(false),
 };
 
 export const FloorreducerSlice = createSlice({

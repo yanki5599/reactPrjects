@@ -13,8 +13,7 @@ const useBuildingData = () => {
   const [buildingData, setBuildingData] = useState<Floor[]>(buildings);
 
   const getFloorByIndex = (floorIndex: number): Floor | undefined => {
-    if (floorIndex < 0 || floorIndex >= buildingData.length) return undefined;
-    else return buildingData[floorIndex];
+    return buildingData[floorIndex];
   };
   const getListOfActivities = (): string[] => {
     return buildingData.map((building) => building.activity);
