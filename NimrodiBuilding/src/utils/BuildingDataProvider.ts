@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import buildings from "../data/building.json";
 
-interface Floor {
+export interface Floor {
   name: string;
   soldiers: number;
   purpose: string;

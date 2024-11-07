@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import roles from "../data/roles.json";
+import { RootState } from "../store/store";
 
 interface IuseActivityParams {
   activity: string;
@@ -6,8 +8,10 @@ interface IuseActivityParams {
   activities: string[];
 }
 
-const useIsVerified = ({ activity, role, activities }: IuseActivityParams) => {
-  //FILL HERE 3.7
-};
+const useIsVerified = ({
+  activity,
+  role,
+  activities,
+}: IuseActivityParams) => {};
 
 export default useIsVerified;

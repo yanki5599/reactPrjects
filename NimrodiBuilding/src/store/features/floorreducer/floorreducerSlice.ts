@@ -2,22 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import buildings from "../../../data/building.json";
 
 interface FloorreducerStateType {
-  floors: { [floorName: string]: boolean };
+  floors: boolean[];
 }
 const initialState: FloorreducerStateType = {
-  floors: buildings.reduce(
-    (obj, item) => Object.assign(obj, { [item.name]: false }),
-    {}
-  ),
+  floors: Array(buildings.length).fill(false),
 };
 
 export const FloorreducerSlice = createSlice({
   initialState,
   name: "floorreducer",
   reducers: {
-    changeAccess: (state, action: PayloadAction<{ floorName: string }>) => {
-      state.floors[action.payload.floorName] =
-        !state.floors[action.payload.floorName];
+    changeAccess: (state, action: PayloadAction<number>) => {
+      state.floors[action.payload] = !state.floors[action.payload];
     },
   },
 });

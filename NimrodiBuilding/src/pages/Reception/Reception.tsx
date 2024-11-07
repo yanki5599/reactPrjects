@@ -1,14 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeAccess } from "../../store/floorreducer";
-import { setRole } from "../../store/Rolereducer";
+import { changeAccess } from "../../store/features/floorreducer/floorreducerSlice";
+import { setRole } from "../../store/features/rolereducer/rolereducerSlice";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import optionalroles from "../../data/roles.json";
 import "./Reception.css";
 
 const Reception: React.FC = () => {
   const floorAccess = useSelector(
-    (state: { floorAccess: { floorAccess: [boolean, boolean, boolean, boolean, boolean] } }) => state.floorAccess.floorAccess
+    (state: {
+      floorAccess: {
+        floorAccess: [boolean, boolean, boolean, boolean, boolean];
+      };
+    }) => state.floorAccess.floorAccess
   );
   const currentRole = useSelector((state: { role: string }) => state.role);
   const { getFloorByIndex } = useBuildingData();
@@ -26,7 +30,8 @@ const Reception: React.FC = () => {
     <div className="reception-page">
       <header className="reception-header">
         <p>
-          Welcome to the Nimrodi Tower access control system. Toggle each floor's access by clicking on the boxes below.
+          Welcome to the Nimrodi Tower access control system. Toggle each
+          floor's access by clicking on the boxes below.
         </p>
       </header>
 
@@ -42,7 +47,9 @@ const Reception: React.FC = () => {
             onKeyPress={(e) => e.key === "Enter" && handleChangeAccess(index)}
           >
             <h5>{floor ? "Access Granted" : "No Access"}</h5>
-            <span>{getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}</span>
+            <span>
+              {getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}
+            </span>
           </div>
         ))}
       </section>
