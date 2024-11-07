@@ -22,7 +22,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     ) {
       navigate("/forbidden");
     }
-  }, []);
+  }, [index]);
 
   return <div className="ProtectedRoute">{children}</div>;
 };
