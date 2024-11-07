@@ -14,12 +14,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   useEffect(() => {
     const parsedIndex = parseInt(index || "");
-    if (
-      parsedIndex === undefined ||
-      parsedIndex < 0 ||
-      parsedIndex >= floorAccess.length ||
-      !floorAccess[parsedIndex]
-    ) {
+    if (!floorAccess[parsedIndex]) {
       navigate("/forbidden");
     }
   }, [index]);
