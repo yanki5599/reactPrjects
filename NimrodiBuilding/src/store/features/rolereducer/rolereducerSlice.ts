@@ -2,21 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import roles from "../../../data/roles.json";
 
 interface RolereducerStateType {
-  currentRole: number;
+  role: string;
 }
 const initialState: RolereducerStateType = {
-  currentRole: 0,
+  role: roles[0],
 };
 
 export const RolereducerSlice = createSlice({
   initialState,
-  name: "rolereducer",
+  name: "role",
   reducers: {
     setRole: (state, action: PayloadAction<number>) => {
-      state.currentRole =
+      state.role =
         action.payload < roles.length && action.payload >= 0
-          ? action.payload
-          : state.currentRole;
+          ? roles[action.payload]
+          : state.role;
     },
   },
 });

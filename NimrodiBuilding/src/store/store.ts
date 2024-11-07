@@ -4,7 +4,7 @@ import roleReducer from "../store/features/rolereducer/rolereducerSlice";
 
 export const store = configureStore({
   reducer: {
-    floors: floorsReducer,
+    floorAccess: floorsReducer,
     role: roleReducer,
   },
 });

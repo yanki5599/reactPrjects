@@ -5,6 +5,7 @@ import { setRole } from "../../store/features/rolereducer/rolereducerSlice";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import optionalroles from "../../data/roles.json";
 import "./Reception.css";
+import { RootState } from "../../store/store";
 
 const Reception: React.FC = () => {
   const floorAccess = useSelector(
@@ -14,7 +15,8 @@ const Reception: React.FC = () => {
       };
     }) => state.floorAccess.floorAccess
   );
-  const currentRole = useSelector((state: { role: string }) => state.role);
+  const currentRole = useSelector((state: RootState) => state.role.role);
+
   const { getFloorByIndex } = useBuildingData();
   const dispatch = useDispatch();
 

@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import buildings from "../../../data/building.json";
 
 interface FloorreducerStateType {
-  floors: boolean[];
+  floorAccess: boolean[];
 }
 const initialState: FloorreducerStateType = {
-  floors: Array(buildings.length).fill(false),
+  floorAccess: new Array<boolean>(buildings.length).fill(false),
 };
 
 export const FloorreducerSlice = createSlice({
@@ -13,7 +13,7 @@ export const FloorreducerSlice = createSlice({
   name: "floorreducer",
   reducers: {
     changeAccess: (state, action: PayloadAction<number>) => {
-      state.floors[action.payload] = !state.floors[action.payload];
+      state.floorAccess[action.payload] = !state.floorAccess[action.payload];
     },
   },
 });

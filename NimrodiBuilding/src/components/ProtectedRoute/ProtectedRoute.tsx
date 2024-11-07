@@ -9,16 +9,21 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { id } = useParams();
+  const { index } = useParams();
   const navigate = useNavigate();
-  const { floors } = useSelector((state: RootState) => state.floors);
+  const { floorAccess } = useSelector((state: RootState) => state.floorAccess);
 
   useEffect(() => {
-    const index = parseInt(id || "");
-    if (!index || index < 0 || index >= floors.length || !floors[index]) {
+    const parsedIndex = parseInt(index || "");
+    if (
+      parsedIndex === undefined ||
+      parsedIndex < 0 ||
+      parsedIndex >= floorAccess.length ||
+      !floorAccess[parsedIndex]
+    ) {
       navigate("/forbidden");
     }
-  });
+  }, []);
 
   return <div className="ProtectedRoute">{children}</div>;
 };

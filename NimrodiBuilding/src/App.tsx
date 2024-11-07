@@ -9,18 +9,20 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Reception />} />
-        <Route path="/forbidden" element={<Forbidden />} />
-        <Route
-          path="/floor/:id"
-          element={
-            <ProtectedRoute>
-              <Floor />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Reception />} />
+          <Route path="/forbidden" element={<Forbidden />} />
+          <Route
+            path="/floor/:index"
+            element={
+              <ProtectedRoute>
+                <Floor />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Layout>
     </div>
   );
 }

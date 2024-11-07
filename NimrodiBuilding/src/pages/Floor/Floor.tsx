@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import useIsVerified from '../../utils/VerifyActivity';
-import useBuildingData from '../../utils/BuildingDataProvider';
-import './Floor.css'; 
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import useIsVerified from "../../utils/VerifyActivity";
+import useBuildingData from "../../utils/BuildingDataProvider";
+import "./Floor.css";
+import { RootState } from "../../store/store";
 
 const Floor: React.FC = () => {
   const { index } = useParams<{ index: string }>();
@@ -11,12 +12,16 @@ const Floor: React.FC = () => {
   const navigate = useNavigate();
 
   const thisFloor = getFloorByIndex(floorIndex);
-  const currentRole = useSelector((state: { role: string }) => state.role);
+  const currentRole = useSelector((state: RootState) => state.role.role);
   const thisFloorActivity: string = thisFloor?.activity || "";
   const activities = getListOfActivities();
 
   const handleClick = () => {
-    const isVerified = useIsVerified({ activity: thisFloorActivity, role: currentRole, activities });
+    const isVerified = useIsVerified({
+      activity: thisFloorActivity,
+      role: currentRole,
+      activities,
+    });
     if (isVerified) {
       alert(`You are currently ${thisFloorActivity}`);
     } else {
