@@ -12,8 +12,6 @@ export interface Floor {
 const useBuildingData = () => {
   const [buildingData, setBuildingData] = useState<Floor[]>(buildings);
 
-  //FILL HERE LOGIC TO SET THE BUILDING DATA
-
   const getFloorByIndex = (floorIndex: number): Floor | undefined => {
     if (floorIndex < 0 || floorIndex >= buildingData.length) return undefined;
     else return buildingData[floorIndex];
