@@ -6,6 +6,7 @@ import * as userService from "../../services/userService";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useErrorMsg from "../../hooks/useErrorMsg";
+import Loader from "../../components/Loader/Loader";
 
 interface MyFormValues {
   [key: string]: string;
@@ -40,6 +41,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="LoginPage Page">
       <h1>Login Page</h1>
+      {/* <Loader /> */}
       <form onSubmit={handleSubmit}>
         <label className="errorMsg">{errorMsg}</label>
         <input

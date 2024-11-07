@@ -52,14 +52,16 @@ const AddNotePage: React.FC = () => {
           type="text"
           name="content"
         />
-        <input
+        <select
           required
-          placeholder="category"
           onChange={handleChange}
           value={formValues.category}
-          type="text"
           name="category"
-        />
+        >
+          {Object.keys(Category).map((k) => (
+            <option value={k}>{k}</option>
+          ))}
+        </select>
         <button type="submit">Add</button>
       </form>
     </div>

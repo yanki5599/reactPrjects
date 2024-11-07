@@ -3,6 +3,7 @@ import "./PrivatePage.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import Loader from "../../components/Loader/Loader";
 
 interface PrivatePageProps {
   children: React.ReactNode;

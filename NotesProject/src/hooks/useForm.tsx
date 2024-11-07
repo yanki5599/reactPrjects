@@ -6,7 +6,7 @@ export interface FormValues {
 
 type UseFormReturnType = {
   formValues: FormValues;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLElement>) => void;
   handleSubmit: (e: FormEvent) => void;
   resetForm: () => void;
 };
