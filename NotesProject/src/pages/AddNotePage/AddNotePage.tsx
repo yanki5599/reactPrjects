@@ -4,10 +4,11 @@ import useForm, { FormValues } from "../../hooks/useForm";
 import { addNote } from "../../store/features/notes/notesSlice";
 import { Category, Note } from "../../types/Note";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const AddNotePage: React.FC = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   function onSubmit(note: { [key: string]: string }) {
     dispatch(
       addNote({
@@ -19,6 +20,7 @@ const AddNotePage: React.FC = () => {
       })
     );
     resetForm();
+    navigate("/notes");
   }
 
   const initialValue = {

@@ -6,7 +6,7 @@ export interface FormValues {
 
 type UseFormReturnType = {
   formValues: FormValues;
-  handleChange: (e: ChangeEvent<HTMLElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   handleSubmit: (e: FormEvent) => void;
   resetForm: () => void;
 };
@@ -17,7 +17,9 @@ export function useForm(
 ): UseFormReturnType {
   const [formValues, setFormValues] = useState<FormValues>(initialValue);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
