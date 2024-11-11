@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 import userModel, { IUser } from "../models/userModel";
-import { UserDto } from "../types/dto/userDto";
+import { AddUserDto } from "../types/dto/userDto";
 import ErrorResponse from "../utils/ErrorResponse";
 import bcrypt from "bcrypt";
 
@@ -8,7 +8,7 @@ const SALT_ROUNDS = 10;
 
 export default class AuthService {
   public static authenticate = async (
-    userDto: UserDto
+    userDto: AddUserDto
   ): Promise<IUser | undefined> => {
     this.checkCredentials(userDto);
 
@@ -22,12 +22,12 @@ export default class AuthService {
     return user;
   };
 
-  private static checkCredentials(userDto: UserDto): void {
-    if (!userDto || !userDto.username.trim() || !userDto.password)
+  private static checkCredentials(userDto: AddUserDto): void {
+    if (!userDto || !userDto.username?.trim() || !userDto.password)
       throw new ErrorResponse("missing credentials", 400);
   }
 
-  public static addUser = async (userDto: UserDto): Promise<IUser> => {
+  public static addUser = async (userDto: AddUserDto): Promise<IUser> => {
     this.checkCredentials(userDto);
 
     if (await this.isUsernameExist(userDto.username))

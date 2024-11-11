@@ -1,7 +1,7 @@
 import mongoose, { model, ObjectId, Schema } from "mongoose";
 
 export interface IUser extends mongoose.Document {
-  _id: string;
+  _id: ObjectId;
   username: string;
   password: string;
   isAdmin: boolean;

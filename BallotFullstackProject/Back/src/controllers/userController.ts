@@ -9,7 +9,10 @@ export const getAllUsers = asyncHandler(
     res
       .status(200)
       .json(
-        createResponse(await userModel.find(), "users fetched successfully")
+        createResponse(
+          await UserService.getAllUsers(),
+          "users fetched successfully"
+        )
       );
   }
 );

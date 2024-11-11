@@ -27,8 +27,8 @@ app.use(
 // Routes
 app.use("/api", authRouter);
 app.use(authMiddleware);
-app.use(adminMiddleware);
 app.use("/api/candidates", candidatesRouter);
+app.use(adminMiddleware);
 app.use("/api/users", usersRouter);
 
 // Basic error handling

@@ -14,7 +14,7 @@ export const connectDB = async () => {
 };
 
 async function seedDB() {
-  if (candidateModel.length === 0)
+  if ((await candidateModel.find()).length === 0)
     await candidateModel.create(
       { name: "Bibi netanyahu" },
       { name: "Donald turmp" },

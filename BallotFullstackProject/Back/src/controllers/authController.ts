@@ -5,11 +5,11 @@ import AuthService from "../services/authService";
 import { IUser } from "../models/userModel";
 import ErrorResponse from "../utils/ErrorResponse";
 import { createResponse } from "../utils/utils";
-import { UserDto } from "../types/dto/userDto";
+import { AddUserDto } from "../types/dto/userDto";
 
 export const login = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { username, password }: UserDto = req.body;
+    const { username, password }: AddUserDto = req.body;
 
     const user: IUser | undefined = await AuthService.authenticate({
       username,
@@ -32,33 +32,45 @@ export const login = asyncHandler(
     });
     ////
 
-    res
-      .status(200)
-      .json(
-        createResponse(
-          { username: user.username, id: user.id },
-          "logged in successfully"
-        )
-      );
+    res.status(200).json(
+      createResponse(
+        {
+          username: user.username,
+          id: user.id,
+          isAdmin: user.isAdmin,
+          hasVoted: user.votedForId != null,
+        },
+        "logged in successfully"
+      )
+    );
   }
 );
 
 export const register = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { username, password }: UserDto = req.body;
+    const { username, password }: AddUserDto = req.body;
 
     const user: IUser = await AuthService.addUser({
       username,
       password,
     });
 
-    res
-      .status(201)
-      .json(
-        createResponse(
-          { username: user.username, id: user.id },
-          "user created successfully"
-        )
-      );
+    res.status(201).json(
+      createResponse(
+        {
+          username: user.username,
+          id: user.id,
+          isAdmin: user.isAdmin,
+          hasVoted: user.votedForId != null,
+        },
+        "user created successfully"
+      )
+    );
+  }
+);
+
+export const validate = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    res.status(200).json(createResponse({}, "validated successfully"));
   }
 );
