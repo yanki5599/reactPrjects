@@ -1,3 +1,4 @@
+import { ObjectId } from "mongoose";
 import userModel, { IUser } from "../models/userModel";
 import { UserDto } from "../types/dto/userDto";
 import ErrorResponse from "../utils/ErrorResponse";
@@ -40,6 +41,10 @@ export default class AuthService {
 
     return added;
   };
+
+  public static async isUserExistById(userId: string | ObjectId) {
+    return (await userModel.findById(userId)) != undefined;
+  }
 
   private static async isUsernameExist(username: string): Promise<boolean> {
     return (await userModel.findOne({ username })) != undefined;

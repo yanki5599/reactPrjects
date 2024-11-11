@@ -13,7 +13,7 @@ export const CandidateSchema = new Schema<ICandidate>({
     required: true,
     lowercase: true,
     minlength: 8,
-    maxlength: 20,
+    maxlength: 30,
   },
 });
 
