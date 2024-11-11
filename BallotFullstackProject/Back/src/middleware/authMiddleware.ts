@@ -16,7 +16,9 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     res.status(401).send({ message: "Unauthorized" });
   }
 
-  (res as any).isAdmin = (decoded as JwtEncryptedUser).isAdmin;
+  req.user = decoded as JwtEncryptedUser;
 
   next();
 };
+
+export default authMiddleware;

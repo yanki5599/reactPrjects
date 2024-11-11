@@ -4,6 +4,6 @@ import * as candidateController from "../controllers/candidateController";
 
 const router = express.Router();
 
-router.route("/candidates").get(candidateController.getCandidates);
+router.route("/").get(candidateController.getCandidates);
 
 export default router;

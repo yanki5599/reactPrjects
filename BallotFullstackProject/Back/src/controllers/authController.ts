@@ -32,7 +32,14 @@ export const login = asyncHandler(
     });
     ////
 
-    res.status(200).json(createResponse(user, "logged in successfully"));
+    res
+      .status(200)
+      .json(
+        createResponse(
+          { username: user.username, id: user.id },
+          "logged in successfully"
+        )
+      );
   }
 );
 
@@ -45,6 +52,13 @@ export const register = asyncHandler(
       password,
     });
 
-    res.status(201).json(createResponse(user, "user created successfully"));
+    res
+      .status(201)
+      .json(
+        createResponse(
+          { username: user.username, id: user.id },
+          "user created successfully"
+        )
+      );
   }
 );

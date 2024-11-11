@@ -6,6 +6,9 @@ import { errorMiddleware } from "./middleware/errorHandler";
 import { connectDB } from "./config/db";
 import authRouter from "./routes/authRouter";
 import candidatesRouter from "./routes/candidatesRouter";
+import usersRouter from "./routes/usersRouter";
+import adminMiddleware from "./middleware/adminMiddleware";
+import authMiddleware from "./middleware/authMiddleware";
 
 connectDB(); // connect to mongoDB
 const app = express();
@@ -23,7 +26,10 @@ app.use(
 
 // Routes
 app.use("/api", authRouter);
+app.use(authMiddleware);
+app.use(adminMiddleware);
 app.use("/api/candidates", candidatesRouter);
+app.use("/api/users", usersRouter);
 
 // Basic error handling
 app.use(errorMiddleware);

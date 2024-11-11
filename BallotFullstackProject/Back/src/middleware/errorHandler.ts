@@ -35,5 +35,5 @@ export const errorMiddleware = (
   const message = statusCode === 500 ? "Internal Server Error" : err.message;
   if (statusCode === 500) console.error(err.stack);
 
-  res.status(statusCode).send(createResponse({}, message, false));
+  res.status(statusCode).json(createResponse({}, message, false));
 };
