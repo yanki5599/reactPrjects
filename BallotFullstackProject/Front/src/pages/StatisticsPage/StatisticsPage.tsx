@@ -6,10 +6,12 @@ interface StatisticsPageProps {}
 
 const StatisticsPage: React.FC<StatisticsPageProps> = ({}) => {
   return (
-    <div className="StatisticsPage Page">
-      <h1>StatisticsPage page</h1>
+    <>
       <NavBar />
-    </div>
+      <div className="StatisticsPage Page">
+        <h1>StatisticsPage page</h1>
+      </div>
+    </>
   );
 };
 

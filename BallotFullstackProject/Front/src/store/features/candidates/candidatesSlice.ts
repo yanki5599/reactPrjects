@@ -14,13 +14,15 @@ const initialState: CandidatesStateType = {
   error: "",
 };
 
-const fetchCandidates = createAsyncThunk(
-  "users/get",
+export const fetchCandidates = createAsyncThunk(
+  "candidates/get",
   async (): Promise<ICandidate[]> => {
     const response = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/candidates`
     );
-    return response.data;
+    console.log(response.data);
+
+    return response.data.data;
   }
 );
 

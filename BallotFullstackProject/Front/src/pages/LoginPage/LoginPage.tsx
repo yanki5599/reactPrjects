@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 import useErrorMsg from "../../hooks/useErrorMsg";
 import Loader from "../../components/Loader/Loader";
 import { AppDispatch } from "../../store/store";
-import { fetchLogin } from "../../store/features/auth/authSlice";
+import {
+  fetchLogin,
+  fetchValidateToken,
+} from "../../store/features/auth/authSlice";
 
 interface MyFormValues {
   [key: string]: string;
@@ -31,7 +34,14 @@ const LoginPage: React.FC = () => {
       .catch((err: any) => showErrorMsg(err))
       .finally(() => setIsLoading(false));
   };
-  useEffect(() => {}, []);
+
+  // check if already logged in
+  useEffect(() => {
+    dispatch(fetchValidateToken())
+      .unwrap()
+      .then(() => navigate("/"))
+      .catch(() => {});
+  }, []);
 
   const { formValues, handleChange, handleSubmit, resetForm } = useForm(
     initialValues,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RegisterPage.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,10 @@ import Loader from "../../components/Loader/Loader";
 import useErrorMsg from "../../hooks/useErrorMsg";
 import useForm from "../../hooks/useForm";
 import { AppDispatch } from "../../store/store";
-import { fetchRegister } from "../../store/features/auth/authSlice";
+import {
+  fetchRegister,
+  fetchValidateToken,
+} from "../../store/features/auth/authSlice";
 
 interface MyFormValues {
   [key: string]: string;
@@ -30,6 +33,14 @@ const RegisterPage: React.FC = () => {
       .catch((err) => showErrorMsg(err.message))
       .finally(() => setIsLoading(false));
   };
+
+  // check if already logged in
+  useEffect(() => {
+    dispatch(fetchValidateToken())
+      .unwrap()
+      .then(() => navigate("/"))
+      .catch(() => {});
+  }, []);
 
   const { formValues, handleChange, handleSubmit, resetForm } = useForm(
     initialValues,

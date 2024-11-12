@@ -39,7 +39,7 @@ export const login = asyncHandler(
           username: user.username,
           id: user.id,
           isAdmin: user.isAdmin,
-          hasVoted: user.votedForId != null,
+          votedForId: user.votedForId,
         },
         "logged in successfully"
       )
@@ -71,7 +71,7 @@ export const register = asyncHandler(
           username: user.username,
           id: user.id,
           isAdmin: user.isAdmin,
-          hasVoted: user.votedForId != null,
+          votedForId: user.votedForId,
         },
         "user created successfully"
       )
@@ -90,7 +90,7 @@ export const validate = asyncHandler(
             username: user.username,
             id: user.id,
             isAdmin: user.isAdmin,
-            hasVoted: user.votedForId != null,
+            votedForId: user.votedForId,
           },
         },
         "validated successfully"

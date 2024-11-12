@@ -20,7 +20,7 @@ const UnauthorizedPage: React.FC<UnauthorizedPageProps> = ({}) => {
   }, []);
 
   useEffect(() => {
-    if (sec === 0) navigate("/login");
+    if (sec === 0) navigate("/");
   }, [sec]);
 
   return (

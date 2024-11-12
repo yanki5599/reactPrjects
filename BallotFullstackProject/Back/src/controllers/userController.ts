@@ -22,7 +22,9 @@ export const voteForCandidate = asyncHandler(
     const userId = req.user?._id;
     const { candidateId } = req.body;
     await UserService.voteForCandidate(userId, candidateId);
-    res.status(200).json(createResponse({}, "vote accepted"));
+    res
+      .status(200)
+      .json(createResponse({ votedForId: candidateId }, "vote accepted"));
     // add socket
   }
 );
