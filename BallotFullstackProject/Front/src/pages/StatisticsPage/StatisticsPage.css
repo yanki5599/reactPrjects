@@ -1,3 +1,12 @@
 .StatisticsPage {
-    /* Add your styles here */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.Page.marginTopZero {
+  margin-top: 0;
 }

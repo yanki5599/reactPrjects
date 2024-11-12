@@ -38,6 +38,7 @@ const Candidate: React.FC<CandidateProps> = ({ candidate }) => {
       >
         {candidate.name}
       </h1>
+      <h4>Votes: {candidate.votes}</h4>
       {!user?.votedForId && <button onClick={handleVote}>Vote</button>}
       {isVotedByUser() && (
         <button onClick={handleCancelVote}>Cancel Vote</button>

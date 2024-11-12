@@ -8,7 +8,7 @@ export function useErrorMsg() {
 
     setTimeout(() => {
       setErrorMsg("");
-    }, 2000);
+    }, 4000);
   }
 
   return { errorMsg, showErrorMsg };

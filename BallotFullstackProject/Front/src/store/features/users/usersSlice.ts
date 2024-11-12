@@ -13,10 +13,15 @@ const initialState: UsersStateType = {
   error: "",
 };
 
-const fetchUsers = createAsyncThunk("users/get", async (): Promise<IUser[]> => {
-  const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`);
-  return response.data;
-});
+export const fetchUsers = createAsyncThunk(
+  "users/get",
+  async (): Promise<IUser[]> => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/users`
+    );
+    return response.data.data;
+  }
+);
 
 export const UsersSlice = createSlice({
   initialState,

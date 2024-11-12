@@ -20,7 +20,6 @@ export const fetchCandidates = createAsyncThunk(
     const response = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/candidates`
     );
-    console.log(response.data);
 
     return response.data.data;
   }
@@ -29,7 +28,11 @@ export const fetchCandidates = createAsyncThunk(
 export const CandidatesSlice = createSlice({
   initialState,
   name: "candidates",
-  reducers: {},
+  reducers: {
+    updateCandidates: (state, action: PayloadAction<ICandidate[]>) => {
+      state.candidates = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCandidates.pending, (state) => {
@@ -48,5 +51,5 @@ export const CandidatesSlice = createSlice({
   },
 });
 
-export const {} = CandidatesSlice.actions;
+export const { updateCandidates } = CandidatesSlice.actions;
 export default CandidatesSlice.reducer;

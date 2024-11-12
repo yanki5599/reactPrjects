@@ -37,7 +37,7 @@ export const fetchLogin = createAsyncThunk(
       );
       console.log(response);
 
-      return { user: response.data, token: response.headers.get };
+      return { user: response.data };
     } catch (error: any) {
       console.log(error);
 
@@ -91,7 +91,7 @@ export const fetchRegister = createAsyncThunk(
       return response.data.data;
     } catch (error: any) {
       return rejectWithValue(
-        error.message || error.response.data.message || "error registering"
+        error.response.data.message || error.message || "error registering"
       );
     }
   }
@@ -143,7 +143,6 @@ export const AuthSlice = createSlice({
         state.error = "";
         state.status = "Fulfilled";
         state.user = action.payload.user;
-        console.log(document.cookie);
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.error = (action.payload as string) || "error fetching auth";
@@ -159,8 +158,8 @@ export const AuthSlice = createSlice({
       })
       .addCase(fetchRegister.rejected, (state, action) => {
         state.error =
-          action.error.message ||
           (action.payload as string) ||
+          action.error.message ||
           "error fetching register";
         state.status = "Rejected";
       })

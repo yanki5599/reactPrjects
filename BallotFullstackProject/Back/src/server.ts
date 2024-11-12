@@ -7,11 +7,14 @@ import { connectDB } from "./config/db";
 import authRouter from "./routes/authRouter";
 import candidatesRouter from "./routes/candidatesRouter";
 import usersRouter from "./routes/usersRouter";
-import adminMiddleware from "./middleware/adminMiddleware";
 import authMiddleware from "./middleware/authMiddleware";
+import { createServer } from "http";
+import { initializeSocketServer } from "./socketServer";
 
 connectDB(); // connect to mongoDB
 const app = express();
+
+const httpServer = createServer(app);
 
 // Middleware
 app.use(express.json());
@@ -24,11 +27,13 @@ app.use(
   })
 );
 
+// Initialize Socket.IO
+export const io = initializeSocketServer(httpServer);
+
 // Routes
 app.use("/api", authRouter);
 app.use(authMiddleware);
 app.use("/api/candidates", candidatesRouter);
-app.use(adminMiddleware);
 app.use("/api/users", usersRouter);
 
 // Basic error handling
@@ -39,6 +44,6 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-app.listen(config.PORT, () => {
+httpServer.listen(config.PORT, () => {
   console.log(`Server running on port ${config.PORT}`);
 });

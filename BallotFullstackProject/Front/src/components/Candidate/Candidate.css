@@ -1,3 +1,26 @@
 .Candidate {
-    /* Add your styles here */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.845);
+  gap: 30px;
+
+  button {
+    border: none;
+    padding: 4px 8px;
+    font-size: 22px;
+  }
+
+  button:hover {
+    background-color: rgba(66, 162, 77, 0.57);
+    transition: 0.1s linear all;
+    transform: scale(1.1);
+  }
+  button:active {
+    transition: 0.1s linear all;
+    transform: scale(0.9);
+  }
 }

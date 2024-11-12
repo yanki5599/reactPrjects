@@ -9,6 +9,7 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import UnauthorizedPage from "./pages/UnauthorizedPage/UnauthorizedPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import "./App.css";
+
 const App: FC = () => {
   return (
     <div className="App">

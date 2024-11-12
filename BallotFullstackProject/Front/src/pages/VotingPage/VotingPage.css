@@ -1,3 +1,8 @@
 .VotingPage {
-    /* Add your styles here */
+}
+.VotingPage .CandidatesList {
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+  margin: 40px;
 }

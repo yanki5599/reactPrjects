@@ -27,10 +27,11 @@ const RegisterPage: React.FC = () => {
     resetForm();
     setIsLoading(true);
     dispatch(fetchRegister(values as { username: string; password: string }))
+      .unwrap()
       .then(() => {
         navigate("/login");
       })
-      .catch((err) => showErrorMsg(err.message))
+      .catch((err) => showErrorMsg(err))
       .finally(() => setIsLoading(false));
   };
 

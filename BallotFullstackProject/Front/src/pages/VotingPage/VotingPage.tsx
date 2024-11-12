@@ -4,15 +4,25 @@ import NavBar from "../../components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import Candidate from "../../components/Candidate/Candidate";
-import { fetchCandidates } from "../../store/features/candidates/candidatesSlice";
+import {
+  fetchCandidates,
+  updateCandidates,
+} from "../../store/features/candidates/candidatesSlice";
 import Loader from "../../components/Loader/Loader";
+import { useSocket } from "../../hooks/useSocket";
 
 interface VotingPageProps {}
 
 const VotingPage: React.FC<VotingPageProps> = ({}) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { candidates } = useSelector((state: RootState) => state.candidates);
+  const { candidates: candidatesFromSocket, connected } = useSocket();
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(updateCandidates(candidatesFromSocket));
+  }, [candidatesFromSocket]);
+
+  const { candidates } = useSelector((state: RootState) => state.candidates);
   const { status } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
@@ -27,12 +37,17 @@ const VotingPage: React.FC<VotingPageProps> = ({}) => {
         <span className="stickCenter">
           {status === "Pending" && <Loader center={true} />}
         </span>
-        {candidates.map((candidate, idx) => (
-          <Candidate
-            key={candidate._id + idx.toString()}
-            candidate={candidate}
-          />
-        ))}
+        <div className="CandidatesList">
+          {candidates.map((candidate, idx) => (
+            <Candidate
+              key={candidate._id + idx.toString()}
+              candidate={candidate}
+            />
+          ))}
+        </div>
+        <div>
+          {connected ? "connected to socket" : "connecting to socket..."}
+        </div>
       </div>
     </>
   );

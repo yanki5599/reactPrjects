@@ -12,6 +12,7 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
   return (
     <div className="NavBar">
+      <h3 style={{ color: "white" }}>Hello {user?.username}</h3>
       {user?.isAdmin && (
         <Link to={"/statisticsPage"}>
           <button className="link">statistics</button>

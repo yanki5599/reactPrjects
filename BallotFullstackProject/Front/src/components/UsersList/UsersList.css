@@ -1,0 +1,17 @@
+.UsersList {
+  margin: 50px;
+  border: 2px solid gray;
+  width: 20%;
+  text-align: center;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+
+  ul {
+    list-style-type: none;
+    padding: 10px 20px;
+
+    li {
+      padding: 4px 8px;
+    }
+  }
+}

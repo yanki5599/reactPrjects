@@ -16,7 +16,7 @@ export const UserSchema = new Schema<IUser>({
     unique: true,
     required: true,
     lowercase: true,
-    minlength: 8,
+    minlength: 3,
     maxlength: 20,
   },
   isAdmin: {

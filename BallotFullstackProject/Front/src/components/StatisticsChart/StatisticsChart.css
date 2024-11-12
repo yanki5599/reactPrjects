@@ -1,0 +1,7 @@
+.StatisticsChart {
+  width: 70%; /* Full width */
+  height: 80%; /* Desired height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
