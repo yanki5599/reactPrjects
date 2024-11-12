@@ -2,10 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import asyncHandler from "../middleware/asyncHandler";
 import Jwt from "jsonwebtoken";
 import AuthService from "../services/authService";
-import { IUser } from "../models/userModel";
+import userModel, { IUser } from "../models/userModel";
 import ErrorResponse from "../utils/ErrorResponse";
 import { createResponse } from "../utils/utils";
 import { AddUserDto } from "../types/dto/userDto";
+import UsersService from "../services/usersService";
 
 export const login = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -46,6 +47,15 @@ export const login = asyncHandler(
   }
 );
 
+export const logout = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    res
+      .clearCookie("token", { path: "/" })
+      .status(200)
+      .json(createResponse({}, "logged out successfully"));
+  }
+);
+
 export const register = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { username, password }: AddUserDto = req.body;
@@ -71,6 +81,20 @@ export const register = asyncHandler(
 
 export const validate = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json(createResponse({}, "validated successfully"));
+    const user = await userModel.findById(req.user?._id);
+    if (!user) throw new ErrorResponse("internal error: user not found", 500);
+    res.status(200).json(
+      createResponse(
+        {
+          user: {
+            username: user.username,
+            id: user.id,
+            isAdmin: user.isAdmin,
+            hasVoted: user.votedForId != null,
+          },
+        },
+        "validated successfully"
+      )
+    );
   }
 );

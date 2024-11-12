@@ -20,8 +20,9 @@ export const getAllUsers = asyncHandler(
 export const voteForCandidate = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.user?._id;
-    const candidateId = req.body;
+    const { candidateId } = req.body;
     await UserService.voteForCandidate(userId, candidateId);
+    res.status(200).json(createResponse({}, "vote accepted"));
     // add socket
   }
 );
@@ -31,5 +32,6 @@ export const cancelVote = asyncHandler(
     const userId = req.user?._id;
     await UserService.cancelVote(userId);
     // add socket
+    res.status(200).json(createResponse({}, "vote canceled"));
   }
 );

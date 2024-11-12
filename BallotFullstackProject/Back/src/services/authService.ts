@@ -3,6 +3,7 @@ import userModel, { IUser } from "../models/userModel";
 import { AddUserDto } from "../types/dto/userDto";
 import ErrorResponse from "../utils/ErrorResponse";
 import bcrypt from "bcrypt";
+import UsersService from "./usersService";
 
 const SALT_ROUNDS = 10;
 
@@ -30,7 +31,7 @@ export default class AuthService {
   public static addUser = async (userDto: AddUserDto): Promise<IUser> => {
     this.checkCredentials(userDto);
 
-    if (await this.isUsernameExist(userDto.username))
+    if (await UsersService.isUsernameExist(userDto.username))
       throw new ErrorResponse("username already exist", 409);
 
     const hashedPassword = await bcrypt.hash(userDto.password, SALT_ROUNDS);
@@ -41,12 +42,4 @@ export default class AuthService {
 
     return added;
   };
-
-  public static async isUserExistById(userId: string | ObjectId) {
-    return (await userModel.findById(userId)) != undefined;
-  }
-
-  private static async isUsernameExist(username: string): Promise<boolean> {
-    return (await userModel.findOne({ username })) != undefined;
-  }
 }
