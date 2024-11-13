@@ -6,6 +6,7 @@ import userModel, { IUser } from "../models/userModel";
 import ErrorResponse from "../utils/ErrorResponse";
 import { createResponse } from "../utils/utils";
 import { AddUserDto } from "../types/dtos/userDto";
+import { match } from "assert";
 
 export const login = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -20,7 +21,11 @@ export const login = asyncHandler(
 
     // JWT
     const token = Jwt.sign(
-      { ...user, password: "********" },
+      {
+        _id: user._id,
+        username: user.username,
+        organization: user.organizationId,
+      },
       process.env.JWT_SECRET as string,
       { expiresIn: "1h" }
     );
@@ -63,10 +68,19 @@ export const validate = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await userModel.findById(req.user?._id);
     if (!user) throw new ErrorResponse("internal error: user not found", 500);
+    await user.populate({
+      path: "arsenal.resources.missileId",
+      foreignField: "id",
+    });
     res.status(200).json(
       createResponse(
         {
-          user: { ...user, password: "********" },
+          user: {
+            _id: user._id,
+            username: user.username,
+            organization: user.organizationId,
+            arsenal: user.arsenal,
+          },
         },
         "validated successfully"
       )

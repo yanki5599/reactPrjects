@@ -6,10 +6,13 @@ export interface Arsenal {
   budget: number;
 }
 
-export const ArsenalSchema = new Schema<Arsenal>({
-  resources: [ResourceSchema],
-  budget: Number,
-});
+export const ArsenalSchema = new Schema<Arsenal>(
+  {
+    resources: [ResourceSchema],
+    budget: Number,
+  },
+  { _id: false }
+);
 
 export interface IUser extends mongoose.Document {
   _id: ObjectId;

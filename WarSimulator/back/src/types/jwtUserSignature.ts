@@ -13,5 +13,7 @@ declare global {
 
 export interface JwtEncryptedUser {
   _id: ObjectId;
+  username: string;
+  organization: string;
   //
 }

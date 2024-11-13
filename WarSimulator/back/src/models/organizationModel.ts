@@ -5,10 +5,13 @@ export interface Resource {
   missileId: ObjectId;
   amount: number;
 }
-export const ResourceSchema = new Schema<Resource>({
-  missileId: Schema.Types.ObjectId,
-  amount: Number,
-});
+export const ResourceSchema = new Schema<Resource>(
+  {
+    missileId: Schema.Types.ObjectId,
+    amount: Number,
+  },
+  { _id: false }
+);
 
 export interface Organization extends mongoose.Document {
   _id: ObjectId;

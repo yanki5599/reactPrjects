@@ -32,11 +32,14 @@ export default class AuthService {
   public static addUser = async (userDto: AddUserDto): Promise<IUser> => {
     await this.checkCredentials(userDto);
 
+    if (!userDto.organization)
+      throw new ErrorResponse("organization is required", 400);
+
     if (await userModel.findOne({ name: userDto.username }))
       throw new ErrorResponse("username already exist", 409);
 
     const org = await organizationModel.findOne({ name: userDto.organization });
-    if (!org) new ErrorResponse("organization not exist", 400);
+    if (!org) throw new ErrorResponse("organization does not exist", 400);
 
     const hashedPassword = await bcrypt.hash(userDto.password, SALT_ROUNDS);
     const added = await userModel.create({

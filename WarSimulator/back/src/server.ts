@@ -28,9 +28,9 @@ app.use(
 // Initialize Socket.IO
 export const io = initializeSocketServer(httpServer);
 
-// Routes
+// // Routes
 app.use("/api", authRouter);
-app.use(authMiddleware);
+// app.use(authMiddleware);
 
 // Basic error handling
 app.use(errorMiddleware);
