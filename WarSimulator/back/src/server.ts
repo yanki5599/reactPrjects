@@ -5,8 +5,6 @@ import { config } from "./config/envConfig";
 import { errorMiddleware } from "./middleware/errorHandler";
 import { connectDB } from "./config/db";
 import authRouter from "./routes/authRouter";
-import candidatesRouter from "./routes/candidatesRouter";
-import usersRouter from "./routes/usersRouter";
 import authMiddleware from "./middleware/authMiddleware";
 import { createServer } from "http";
 import { initializeSocketServer } from "./socketServer";
@@ -33,8 +31,6 @@ export const io = initializeSocketServer(httpServer);
 // Routes
 app.use("/api", authRouter);
 app.use(authMiddleware);
-app.use("/api/candidates", candidatesRouter);
-app.use("/api/users", usersRouter);
 
 // Basic error handling
 app.use(errorMiddleware);
