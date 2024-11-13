@@ -14,7 +14,7 @@ export interface Organization extends mongoose.Document {
   _id: ObjectId;
   name: string;
   resources: Resource[];
-  budget: 8000000;
+  budget: Number;
 }
 
 export const OrganizationSchema = new Schema<Organization>({

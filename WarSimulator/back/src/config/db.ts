@@ -1,8 +1,11 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { ObjectId, Schema } from "mongoose";
 import organizations from "../data/organizations.json";
 import missiles from "../data/missiles.json";
 import missileModel, { Missile } from "../models/missileModel";
-import organizationModel, { Resource } from "../models/organizationModel";
+import organizationModel, {
+  Organization,
+  Resource,
+} from "../models/organizationModel";
 
 export const connectDB = async () => {
   try {
@@ -18,7 +21,7 @@ export const connectDB = async () => {
 
 async function seedDB() {
   if ((await missileModel.find()).length === 0) await seedMissiles();
-  if ((await missileModel.find()).length === 0) await seedOrganizations();
+  if ((await organizationModel.find()).length === 0) await seedOrganizations();
 }
 
 async function seedMissiles() {
@@ -33,17 +36,26 @@ async function seedMissiles() {
   );
 
   // fill intercepts
-  (await missileModel.find()).forEach(async (missile: Missile) => {
-    missile.intercepts = await getIntercepts(missile.name);
-  });
+  console.log("filling intercepts");
+
+  const all = await missileModel.find();
+
+  for (const missile of all) {
+    const curr: Missile | null = await missileModel.findById(missile.id);
+    const intercepts = getIntercepts(missile.name, all);
+    await curr!.updateOne({ $set: { intercepts: intercepts } });
+    await curr!.save();
+  }
+
+  console.log("after filling intercepts");
 }
 async function seedOrganizations() {
-  organizationModel.insertMany(
-    organizations.map(async (org) => ({
+  organizations.forEach(async (org) =>
+    organizationModel.create({
       name: org.name,
       budget: org.budget,
       resources: await getResourcesByName(org.name),
-    }))
+    })
   );
 }
 
@@ -61,19 +73,23 @@ async function getResourcesByName(orgName: string): Promise<Resource[]> {
   return resources;
 }
 
-async function getIntercepts(
-  missileName: string
-): Promise<Schema.Types.ObjectId[]> {
-  const interceptsNames = await missiles.find((m) => m.name === missileName)
-    ?.intercepts;
+function getIntercepts(
+  missileName: string,
+  missilesFromDB: Missile[]
+): Schema.Types.ObjectId[] {
+  const interceptsNames = missiles.find(
+    (m) => m.name === missileName
+  )?.intercepts;
+  console.log(interceptsNames);
 
-  if (!interceptsNames) return [];
+  if (!interceptsNames || interceptsNames?.length === 0) return [];
 
-  const interceptsMissiles = await missileModel.find(
-    (missile: Missile) => missile.name in interceptsNames
+  const interceptsMissiles = missilesFromDB.filter((missile: Missile) =>
+    interceptsNames.find((n) => n === missile.name)
   );
 
   const interceptsIds = interceptsMissiles.map((m) => m._id);
+  console.log(interceptsIds);
 
   return interceptsIds;
 }
