@@ -7,7 +7,7 @@ export interface Resource {
 }
 export const ResourceSchema = new Schema<Resource>(
   {
-    missileId: Schema.Types.ObjectId,
+    missileId: { type: Schema.Types.ObjectId, ref: "Missile" },
     amount: Number,
   },
   { _id: false }

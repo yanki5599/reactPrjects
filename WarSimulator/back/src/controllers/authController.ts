@@ -66,21 +66,21 @@ export const register = asyncHandler(
 
 export const validate = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user = await userModel.findById(req.user?._id);
+    const user = await userModel
+      .findById(req.user?._id)
+      .populate("arsenal.resources.missileId");
+
     if (!user) throw new ErrorResponse("internal error: user not found", 500);
-    await user.populate({
-      path: "arsenal.resources.missileId",
-      foreignField: "id",
-    });
     res.status(200).json(
       createResponse(
         {
-          user: {
-            _id: user._id,
-            username: user.username,
-            organization: user.organizationId,
-            arsenal: user.arsenal,
-          },
+          user,
+          // user: {
+          //   _id: user._id,
+          //   username: user.username,
+          //   organization: user.organizationId,
+          //   arsenal: user.arsenal,
+          // },
         },
         "validated successfully"
       )
