@@ -35,7 +35,6 @@ export const fetchLogin = createAsyncThunk(
         `${import.meta.env.VITE_BACKEND_URL}/login`,
         { username, password }
       );
-      console.log(response);
 
       return { user: response.data };
     } catch (error: any) {
@@ -77,16 +76,18 @@ export const fetchRegister = createAsyncThunk(
     {
       username,
       password,
+      organization,
     }: {
       username: string;
       password: string;
+      organization: string;
     },
     { rejectWithValue }
   ) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/register`,
-        { username, password }
+        { username, password, organization }
       );
       return response.data.data;
     } catch (error: any) {
@@ -97,25 +98,6 @@ export const fetchRegister = createAsyncThunk(
   }
 );
 
-export const fetchVote = createAsyncThunk(
-  "users/vote",
-  async ({ candidateId }: { candidateId: string }) => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/users/vote`,
-      { candidateId }
-    );
-    return response.data.data.votedForId;
-  }
-);
-export const fetchCancelVote = createAsyncThunk(
-  "users/cancel-vote",
-  async () => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/users/cancel-vote`
-    );
-    return response.data;
-  }
-);
 export const AuthSlice = createSlice({
   initialState,
   name: "auth",
@@ -176,32 +158,6 @@ export const AuthSlice = createSlice({
           action.error.message ||
           (action.payload as string) ||
           "error fetching register";
-        state.status = "Rejected";
-      })
-      .addCase(fetchVote.pending, (state) => {
-        state.status = "Pending";
-        state.error = "";
-      })
-      .addCase(fetchVote.fulfilled, (state, action) => {
-        state.error = "";
-        state.status = "Fulfilled";
-        state.user = { ...state.user!, votedForId: action.payload };
-      })
-      .addCase(fetchVote.rejected, (state, action) => {
-        state.error = action.error.message || "error fetching users";
-        state.status = "Rejected";
-      })
-      .addCase(fetchCancelVote.pending, (state) => {
-        state.status = "Pending";
-        state.error = "";
-      })
-      .addCase(fetchCancelVote.fulfilled, (state) => {
-        state.error = "";
-        state.status = "Fulfilled";
-        state.user!.votedForId = null;
-      })
-      .addCase(fetchCancelVote.rejected, (state, action) => {
-        state.error = action.error.message || "error fetching users";
         state.status = "Rejected";
       });
   },

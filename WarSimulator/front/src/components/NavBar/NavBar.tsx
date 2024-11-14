@@ -13,14 +13,7 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
   return (
     <div className="NavBar">
       <h3 style={{ color: "white" }}>Hello {user?.username}</h3>
-      {user?.isAdmin && (
-        <Link to={"/statisticsPage"}>
-          <button className="link">statistics</button>
-        </Link>
-      )}
-      <Link to={"/votingPage"}>
-        <button className="link">voting Page</button>
-      </Link>
+
       <Link to={"/login"}>
         <button onClick={() => dispatch(fetchLogout())} className="link">
           Logout

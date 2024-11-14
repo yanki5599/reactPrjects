@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
-import { ICandidate } from "../types/candidate";
 
 const SERVER_URL: string = import.meta.env.VITE_SOCKET_URL as string;
 

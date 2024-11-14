@@ -7,6 +7,8 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import UnauthorizedPage from "./pages/UnauthorizedPage/UnauthorizedPage";
 import "./App.css";
 import DirectionPage from "./pages/DirectionPage/DirectionPage";
+import DefenderPage from "./pages/DefenderPage/DefenderPage";
+import AttackerPage from "./pages/AttackerPage/AttackerPage";
 
 const App: FC = () => {
   return (
@@ -21,6 +23,22 @@ const App: FC = () => {
           }
         />
         <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/defender"
+          element={
+            <PrivatePage>
+              <DefenderPage />
+            </PrivatePage>
+          }
+        />
+        <Route
+          path="/attacker"
+          element={
+            <PrivatePage>
+              <AttackerPage />
+            </PrivatePage>
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="*" element={<NotFoundPage />} />

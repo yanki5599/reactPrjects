@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./features/users/usersSlice";
+import attacksReducer from "./features/attacks/attacksSlice";
 import authReducer from "./features/auth/authSlice";
-import candidatesReducer from "./features/candidates/candidatesSlice";
+import organizationsReducer from "./features/organizations/organizationsSlice";
 
 export const store = configureStore({
   reducer: {
-    users: userReducer,
-    candidates: candidatesReducer,
+    attacks: attacksReducer,
+    organizations: organizationsReducer,
     auth: authReducer,
   },
 });

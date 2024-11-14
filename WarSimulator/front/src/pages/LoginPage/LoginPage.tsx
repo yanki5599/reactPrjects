@@ -21,7 +21,6 @@ const LoginPage: React.FC = () => {
   const initialValues: MyFormValues = {
     username: "",
     password: "",
-    organization: "",
   };
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -33,7 +32,7 @@ const LoginPage: React.FC = () => {
     dispatch(fetchLogin(values as { username: string; password: string }))
       .unwrap()
       .then(() => {
-        navigate("/directionPage");
+        navigate("/");
       })
       .catch((err: any) => showErrorMsg(err))
       .finally(() => setIsLoading(false));
@@ -76,12 +75,7 @@ const LoginPage: React.FC = () => {
           name="password"
           required
         />
-        <select
-          value={formValues.organization}
-          onChange={handleChange}
-          name="organization"
-          required
-        ></select>
+
         <button type="submit">Login</button>
       </form>
       <button onClick={() => navigate("/register")}>Register</button>
