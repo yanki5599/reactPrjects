@@ -7,7 +7,9 @@ import MissileService from "../services/missileService";
 export const getAll = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.user?._id;
-    const attacks = await AttackingMissileModel.find({ attackerId: id });
+    const attacks = await AttackingMissileModel.find({
+      attackerId: id,
+    }).populate("missileId");
 
     res
       .status(200)

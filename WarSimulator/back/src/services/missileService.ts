@@ -134,12 +134,6 @@ export default class MissileService {
     timeout: number,
     id: string
   ): Promise<NodeJS.Timeout> {
-    console.log(await attackingMissiles.getArray());
-    // setInterval(async () => {
-    //   const missile = await AttackingMissileModel.findById(id);
-    //   console.log("time: ", missile?.status);
-    // }, 1000);
-
     return setTimeout(async () => {
       // explode missile
       attackingMissiles.remove(id);
@@ -150,6 +144,6 @@ export default class MissileService {
       // save to db
       await missile?.save();
       // send to socket
-    }, timeout * 5000);
+    }, timeout * 1000);
   }
 }
