@@ -6,13 +6,13 @@ import AttackingMissileModel, {
   AttackingMissile,
   MissileStatus,
 } from "../models/AttackingMissileModel";
-import missileModel from "../models/missileModel";
+import missileModel, { Missile } from "../models/missileModel";
 import { ConcurrentArray } from "../utils/ConcurrentArray";
 
 export interface AttackDto {
   attackerId: string | ObjectId;
   destination: string;
-  missileId: string;
+  attackerMissileTypeId: string;
 }
 
 export interface DefenderDto {
@@ -21,49 +21,80 @@ export interface DefenderDto {
   attackerMissileId: ObjectId;
 }
 
-const attackingMissiles = new ConcurrentArray<AttackingMissile>();
+const attackingMissiles = new ConcurrentArray<{
+  missile: AttackingMissile;
+  timer: NodeJS.Timeout;
+  _id: ObjectId;
+}>();
 
 export default class MissileService {
-  public static attack = async (attacker: AttackDto) => {
+  public static attack = async ({
+    attackerId,
+    destination,
+    attackerMissileTypeId: missileId,
+  }: AttackDto) => {
     // validate fields
-    if (
-      !attacker ||
-      !attacker.attackerId ||
-      !attacker.destination ||
-      !attacker.missileId
-    )
+    if (!attackerId || !destination || !missileId)
       throw new ErrorResponse("missing fields", 400);
 
     // validate
-    const attackerDoc = userModel.findById(attacker.attackerId);
+    const attackerDoc = userModel.findById(attackerId);
     if (!attackerDoc) throw new ErrorResponse("unable to find attacker", 400);
 
     // validate destination
-    const idfOrganizations = (
-      await organizationModel.where((org: Organization) =>
-        org.name.startsWith("IDF")
-      )
-    ).map((org) => org.name.slice(5));
+    const idfOrganizations = (await organizationModel.find())
+      .filter((org) => org.name.startsWith("IDF"))
+      .map((org) => org.name.slice(6));
+    console.log(idfOrganizations);
 
-    if (!idfOrganizations.includes(attacker.destination))
+    if (!idfOrganizations.includes(destination))
       throw new ErrorResponse("invalid destination", 400);
 
-    this.launchMissile(
-      attacker.attackerId,
-      attacker.destination,
-      attacker.missileId
-    );
+    return await this.launchMissile(attackerId, destination, missileId);
   };
 
-  public static interceptMissile = async (def: DefenderDto) => {
-    const defender = await userModel.findById(def.defenderId);
+  public static interceptMissile = async ({
+    defenderId,
+    missileId,
+    attackerMissileId,
+  }: DefenderDto) => {
+    // defender
+    const defender = await userModel.findById(defenderId);
     if (!defender) throw new ErrorResponse("defender not exist", 404);
 
+    // launched missile
     const attackerMissile = await AttackingMissileModel.findById(
-      def.attackerMissileId
+      attackerMissileId
     );
     if (!attackerMissile)
       throw new ErrorResponse("attackerMissile not exist", 404);
+
+    // defender's missile
+    const defMissile = await missileModel.findById(missileId);
+    if (!defMissile) throw new ErrorResponse("missile defender not found", 404);
+
+    if (!defMissile.intercepts.includes(attackerMissile.missileId))
+      throw new ErrorResponse(
+        `missile:${defMissile.name} cannot intercept missile: ${attackerMissile.id}`,
+        404
+      );
+
+    // intercept missile
+    const attackInArray = (await attackingMissiles.getArray()).find(
+      (att) => att._id == attackerMissileId
+    );
+
+    if (!attackInArray)
+      throw new ErrorResponse("missile already exploded or intercepted", 404);
+
+    clearTimeout(attackInArray.timer);
+
+    const updated = await AttackingMissileModel.findOneAndUpdate(
+      attackInArray._id,
+      { status: MissileStatus.Intercepted },
+      { new: true }
+    );
+    return updated;
   };
 
   private static async launchMissile(
@@ -80,26 +111,45 @@ export default class MissileService {
     // add to DB
     const launched = await AttackingMissileModel.create({
       attackerId,
+      missileId,
       destination,
       status: MissileStatus.Launched,
       eta: eta,
     });
 
-    // add to array
-    attackingMissiles.add(launched);
-    this.SetExplosionTimer(missileType.speed, launched.id);
+    // // add to array
+    const timer = await this.SetExplosionTimer(missileType.speed, launched.id);
 
+    await attackingMissiles.add({
+      missile: launched,
+      timer,
+      _id: launched._id,
+    });
+
+    return launched;
     // add socket event
   }
 
-  private static SetExplosionTimer(
+  private static async SetExplosionTimer(
     timeout: number,
     id: string
-  ): NodeJS.Timeout {
+  ): Promise<NodeJS.Timeout> {
+    console.log(await attackingMissiles.getArray());
+    // setInterval(async () => {
+    //   const missile = await AttackingMissileModel.findById(id);
+    //   console.log("time: ", missile?.status);
+    // }, 1000);
+
     return setTimeout(async () => {
       // explode missile
+      attackingMissiles.remove(id);
+      const missile = await AttackingMissileModel.findByIdAndUpdate(id, {
+        status: MissileStatus.Hit,
+      });
+
       // save to db
+      await missile?.save();
       // send to socket
-    }, timeout);
+    }, timeout * 5000);
   }
 }

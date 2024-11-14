@@ -37,7 +37,7 @@ export const login = asyncHandler(
     });
     ////
 
-    res.status(200).json(createResponse({}, "logged in successfully"));
+    res.status(200).json(createResponse({ user }, "logged in successfully"));
   }
 );
 
@@ -68,19 +68,15 @@ export const validate = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await userModel
       .findById(req.user?._id)
-      .populate("arsenal.resources.missileId");
+      .populate("arsenal.resources.missileId")
+      .populate("organizationId");
 
     if (!user) throw new ErrorResponse("internal error: user not found", 500);
+
     res.status(200).json(
       createResponse(
         {
           user,
-          // user: {
-          //   _id: user._id,
-          //   username: user.username,
-          //   organization: user.organizationId,
-          //   arsenal: user.arsenal,
-          // },
         },
         "validated successfully"
       )

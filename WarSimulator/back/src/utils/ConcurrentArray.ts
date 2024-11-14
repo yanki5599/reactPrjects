@@ -1,6 +1,7 @@
 import { Mutex } from "async-mutex";
+import { ObjectId } from "mongoose";
 
-export class ConcurrentArray<T> {
+export class ConcurrentArray<T extends { _id: ObjectId }> {
   private array: T[] = [];
   private mutex = new Mutex();
 
@@ -25,10 +26,10 @@ export class ConcurrentArray<T> {
   }
 
   // Removes an item if found
-  async remove(item: T): Promise<void> {
+  async remove(id: string): Promise<void> {
     const release = await this.mutex.acquire();
     try {
-      const index = this.array.indexOf(item);
+      const index = this.array.findIndex((item) => String(item._id) === id);
       if (index !== -1) {
         this.array.splice(index, 1);
       }

@@ -36,7 +36,6 @@ async function seedMissiles() {
   );
 
   // fill intercepts
-  console.log("filling intercepts");
 
   const all = await missileModel.find();
 
@@ -80,7 +79,6 @@ function getIntercepts(
   const interceptsNames = missiles.find(
     (m) => m.name === missileName
   )?.intercepts;
-  console.log(interceptsNames);
 
   if (!interceptsNames || interceptsNames?.length === 0) return [];
 
@@ -89,7 +87,6 @@ function getIntercepts(
   );
 
   const interceptsIds = interceptsMissiles.map((m) => m._id);
-  console.log(interceptsIds);
 
   return interceptsIds;
 }

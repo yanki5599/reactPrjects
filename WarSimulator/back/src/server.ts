@@ -8,8 +8,9 @@ import authRouter from "./routes/authRouter";
 import authMiddleware from "./middleware/authMiddleware";
 import { createServer } from "http";
 import { initializeSocketServer } from "./socketServer";
-import missileRouter from "./routes/missileRouter";
 import organizationRouter from "./routes/organizationRouter";
+import attackerRouter from "./routes/attackerRouter";
+import defenderRouter from "./routes/defenderRouter";
 
 connectDB(); // connect to mongoDB
 const app = express();
@@ -32,9 +33,11 @@ export const io = initializeSocketServer(httpServer);
 
 // // Routes
 app.use("/api", authRouter);
-app.use(authMiddleware);
-app.use("/api/launch", missileRouter);
 app.use("/api/organization", organizationRouter);
+app.use(authMiddleware);
+
+app.use("/api/attacker", attackerRouter);
+app.use("/api/defender", defenderRouter);
 // Basic error handling
 app.use(errorMiddleware);
 
