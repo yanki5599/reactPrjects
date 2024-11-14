@@ -38,7 +38,7 @@ const AttackerPage: React.FC<AttackerPageProps> = ({}) => {
   return (
     <>
       <NavBar />
-      <div className="Attacker Page">
+      <div className="AttackerPage Page">
         <h1>AttackerPage page</h1>
 
         <WeaponsLayout arsenal={user?.arsenal!} />
