@@ -10,6 +10,8 @@ import usersRouter from "./routes/usersRouter";
 import authMiddleware from "./middleware/authMiddleware";
 import { createServer } from "http";
 import { initializeSocketServer } from "./socketServer";
+import dotenv from "dotenv";
+dotenv.config();
 
 connectDB(); // connect to mongoDB
 const app = express();
@@ -22,7 +24,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Vite default port
+    origin: "http://localhost", // Vite default port
     credentials: true, // Required for cookies
   })
 );
